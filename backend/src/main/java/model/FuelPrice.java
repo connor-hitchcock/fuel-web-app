@@ -1,5 +1,8 @@
 package model;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class FuelPrice {
     private String country;
     private float petrol91; //currency per litre
@@ -18,6 +21,18 @@ public class FuelPrice {
         this.diesel = diesel;
         this.ruc = ruc;
         this.electric = electric;
+    }
+
+    public Map<String, Object> getFuelPriceMap() {
+        Map<String, Object> map = new HashMap<>();
+        map.put("country", country);
+        map.put("petrol91", petrol91);
+        map.put("petrol95", petrol95);
+        map.put("petrol100", petrol100);
+        map.put("diesel", diesel);
+        map.put("ruc", ruc);
+        map.put("electric", electric);
+        return map;
     }
 
     public String getCountry() {

@@ -18,7 +18,8 @@ type CarDetail {
     make: String
     model: String
     year: Int
-    country: FuelPrice
+    country: String
+    fuelPrice: FuelPrice
 }
 
 type FuelPrice {
@@ -33,6 +34,7 @@ type FuelPrice {
 
 type Query {
     carDetails: [CarDetail]
+    carByPlate(licensePlate: ID): CarDetail
     fuelPrices: [FuelPrice]
 }
 

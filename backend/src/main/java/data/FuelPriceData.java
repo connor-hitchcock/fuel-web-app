@@ -1,6 +1,10 @@
 package data;
 
+import model.CarDetail;
 import model.FuelPrice;
+
+import java.util.List;
+import java.util.Map;
 
 public class FuelPriceData {
     public static FuelPrice newZealand = new FuelPrice(
@@ -11,5 +15,13 @@ public class FuelPriceData {
             1.87f,
             7.6f,
             0.2631f
+    );
+
+    public static List<FuelPrice> allFuelPrices = List.of(
+            newZealand
+    );
+
+    public static List<Map<String, Object>> allFuelPricesMapped = List.of(
+            newZealand.getFuelPriceMap()
     );
 }

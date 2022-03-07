@@ -1,5 +1,8 @@
 package model;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class CarDetail {
     public enum FuelType {
         PETROL91,
@@ -35,6 +38,22 @@ public class CarDetail {
         this.model = model;
         this.year = year;
         this.country = country;
+    }
+
+    public Map<String, Object> getCarDetailMap() {
+        Map<String, Object> map = new HashMap<>();
+        map.put("licensePlate", licensePlate);
+        map.put("engineSize", engineSize);
+        map.put("horsepower", horsepower);
+        map.put("torque", torque);
+        map.put("fuelType", fuelType);
+        map.put("fuelEcoUrban", fuelEcoUrban);
+        map.put("fuelEcoRural", fuelEcoRural);
+        map.put("make", make);
+        map.put("model", model);
+        map.put("year", year);
+        map.put("country", country);
+        return map;
     }
 
     public String getLicensePlate() {

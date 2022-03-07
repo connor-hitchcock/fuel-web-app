@@ -3,6 +3,7 @@ package data;
 import model.CarDetail;
 
 import java.util.List;
+import java.util.Map;
 
 public class CarDetailData {
     public static CarDetail connorCorolla = new CarDetail(
@@ -103,6 +104,13 @@ public class CarDetailData {
             "New Zealand"
     );
 
-    public static List<CarDetail> allCars = List.of(connorCorolla, connorAudiA4, connorDemio, connorJetta,
-            fatherBigHorn, fatherCorolla, alexSwift);
+    public static List<CarDetail> allCarsDetails = List.of(
+            connorCorolla, connorAudiA4, connorDemio, connorJetta, fatherBigHorn, fatherCorolla, alexSwift
+    );
+
+    public static List<Map<String, Object>> allCarDetailsMapped = List.of(
+            connorCorolla.getCarDetailMap(), connorAudiA4.getCarDetailMap(), connorDemio.getCarDetailMap(),
+            connorJetta.getCarDetailMap(), fatherBigHorn.getCarDetailMap(), fatherCorolla.getCarDetailMap(),
+            alexSwift.getCarDetailMap()
+    );
 }
