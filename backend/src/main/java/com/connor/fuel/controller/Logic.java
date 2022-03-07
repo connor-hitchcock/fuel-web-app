@@ -10,7 +10,6 @@ public class Logic {
         var fuelEcoUrban = carDetails.getFuelEcoUrban();
         var fuelEcoRural = carDetails.getFuelEcoRural();
 
-        //Case 1: Petrol
         if (fuelType == CarDetail.FuelType.PETROL91 ||
             fuelType == CarDetail.FuelType.PETROL95 ||
             fuelType == CarDetail.FuelType.PETROL100) {
@@ -19,7 +18,6 @@ public class Logic {
             costPer100km = calcCostDieselPer100km(fuelPrices, fuelEcoUrban, fuelEcoRural);
         }
 
-        //Case 2: Diesel
         return costPer100km;
         //TODO handle Electric
     }
