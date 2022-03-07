@@ -1,4 +1,4 @@
-package model;
+package com.connor.fuel.model;
 
 import java.util.HashMap;
 import java.util.Map;

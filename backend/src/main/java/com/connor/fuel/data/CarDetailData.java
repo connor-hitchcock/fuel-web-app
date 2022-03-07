@@ -1,6 +1,6 @@
-package data;
+package com.connor.fuel.data;
 
-import model.CarDetail;
+import com.connor.fuel.model.CarDetail;
 
 import java.util.List;
 import java.util.Map;

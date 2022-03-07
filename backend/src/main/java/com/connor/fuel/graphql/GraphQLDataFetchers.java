@@ -1,7 +1,7 @@
-package graphql;
+package com.connor.fuel.graphql;
 
-import data.CarDetailData;
-import data.FuelPriceData;
+import com.connor.fuel.data.CarDetailData;
+import com.connor.fuel.data.FuelPriceData;
 import graphql.schema.DataFetcher;
 import org.springframework.stereotype.Component;
 

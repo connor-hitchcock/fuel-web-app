@@ -1,8 +1,10 @@
-import data.CarDetailData;
-import data.FuelPriceData;
-import model.CarDetail;
+package com.connor.fuel;
 
-import static controller.Logic.calcCostPer100km;
+import com.connor.fuel.data.CarDetailData;
+import com.connor.fuel.data.FuelPriceData;
+import com.connor.fuel.model.CarDetail;
+
+import static com.connor.fuel.controller.Logic.calcCostPer100km;
 
 public class Main {
 

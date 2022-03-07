@@ -1,7 +1,7 @@
-package controller;
+package com.connor.fuel.controller;
 
-import model.CarDetail;
-import model.FuelPrice;
+import com.connor.fuel.model.CarDetail;
+import com.connor.fuel.model.FuelPrice;
 
 public class Logic {
     public static float calcCostPer100km(CarDetail carDetails, FuelPrice fuelPrices) {

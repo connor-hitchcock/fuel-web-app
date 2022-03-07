@@ -1,7 +1,8 @@
-package graphql;
+package com.connor.fuel.graphql;
 
 import com.google.common.base.Charsets;
 import com.google.common.io.Resources;
+import graphql.GraphQL;
 import graphql.schema.GraphQLSchema;
 import graphql.schema.idl.RuntimeWiring;
 import graphql.schema.idl.SchemaGenerator;
