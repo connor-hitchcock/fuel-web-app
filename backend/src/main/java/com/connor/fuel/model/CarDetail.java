@@ -25,11 +25,11 @@ public class CarDetail {
     private int year;               //the year the car was made
     private String country;         //the country the car is driven in
 
-    public CarDetail(String licensePlate, float engineSize, int horsePower, int torque, FuelType fuelType,
+    public CarDetail(String licensePlate, float engineSize, int horsepower, int torque, FuelType fuelType,
                      float fuelEcoUrban, float fuelEcoRural, String make, String model, int year, String country) {
         this.licensePlate = licensePlate;
         this.engineSize = engineSize;
-        this.horsepower = horsePower;
+        this.horsepower = horsepower;
         this.torque = torque;
         this.fuelType = fuelType;
         this.fuelEcoUrban = fuelEcoUrban;
@@ -72,11 +72,11 @@ public class CarDetail {
         this.engineSize = engineSize;
     }
 
-    public int getHorsePower() {
+    public int getHorsepower() {
         return horsepower;
     }
 
-    public void setHorsePower(int horsepower) {
+    public void setHorsepower(int horsepower) {
         this.horsepower = horsepower;
     }
 

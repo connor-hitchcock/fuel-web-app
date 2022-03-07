@@ -10,7 +10,7 @@ enum FuelType {
 type CarDetail {
     licensePlate: ID
     engineSize: Float
-    horsePower: Int
+    horsepower: Int
     torque: Int
     fuelType: FuelType
     fuelEcoUrban: Float
