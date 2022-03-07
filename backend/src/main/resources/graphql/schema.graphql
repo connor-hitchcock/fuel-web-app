@@ -1,0 +1,13 @@
+enum FuelType {
+    PETROL91
+    PETROL95
+    PETROL100
+    DIESEL
+    HYBRID
+    ELECTRIC
+}
+
+type CarDetails {
+    engineSize: Float
+    horsePower: Int
+}

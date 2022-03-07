@@ -6,6 +6,7 @@ import java.util.List;
 
 public class CarDetailsData {
     public static CarDetails connorCorolla = new CarDetails(
+            "AAA111",
             1.8f,
             147,
             180,
@@ -19,6 +20,7 @@ public class CarDetailsData {
     );
 
     public static CarDetails connorAudiA4 = new CarDetails(
+            "BBB222",
             2.7f,
             190,
             400,
@@ -32,6 +34,7 @@ public class CarDetailsData {
     );
 
     public static CarDetails connorDemio = new CarDetails(
+            "CCC333",
             1.3f,
             86,
             122,
@@ -45,6 +48,7 @@ public class CarDetailsData {
     );
 
     public static CarDetails connorJetta = new CarDetails(
+            "DDD444",
             2.0f,
             140,
             320,
@@ -58,6 +62,7 @@ public class CarDetailsData {
     );
 
     public static CarDetails fatherBigHorn = new CarDetails(
+            "EEE555",
             3.1f,
             133,
             294,
@@ -71,6 +76,7 @@ public class CarDetailsData {
     );
 
     public static CarDetails fatherCorolla = new CarDetails(
+            "FFF666",
             2.0f,
             126,
             300,
@@ -84,6 +90,7 @@ public class CarDetailsData {
     );
 
     public static CarDetails alexSwift = new CarDetails(
+            "GGG777",
             1.5f,
             102,
             133,

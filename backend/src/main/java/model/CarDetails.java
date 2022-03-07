@@ -10,6 +10,7 @@ public class CarDetails {
         ELECTRIC
     }
 
+    private String licensePlate;    //unique and non-null primary identifier, the car's license plate
     private float engineSize;       //engine displacement in litres
     private int horsepower;         //engine horsepower
     private int torque;             //engine torque
@@ -21,8 +22,9 @@ public class CarDetails {
     private int year;               //the year the car was made
     private String country;         //the country the car is driven in
 
-    public CarDetails(float engineSize, int horsePower, int torque, FuelType fuelType, float fuelEcoUrban,
-                      float fuelEcoRural, String make, String model, int year, String country) {
+    public CarDetails(String licensePlate, float engineSize, int horsePower, int torque, FuelType fuelType,
+                      float fuelEcoUrban, float fuelEcoRural, String make, String model, int year, String country) {
+        this.licensePlate = licensePlate;
         this.engineSize = engineSize;
         this.horsepower = horsePower;
         this.torque = torque;
@@ -33,6 +35,14 @@ public class CarDetails {
         this.model = model;
         this.year = year;
         this.country = country;
+    }
+
+    public String getLicensePlate() {
+        return licensePlate;
+    }
+
+    public void setLicensePlate(String licensePlate) {
+        this.licensePlate = licensePlate;
     }
 
     public float getEngineSize() {
