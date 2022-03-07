@@ -30,3 +30,13 @@ type FuelPrice {
     ruc: Float
     electric: Float
 }
+
+type Query {
+    carDetails: [CarDetail]
+    fuelPrices: [FuelPrice]
+}
+
+type Mutation {
+    carDetails: [CarDetail]
+    fuelPrices: [FuelPrice]
+}
