@@ -1,21 +1,21 @@
 package controller;
 
-import model.CarDetails;
-import model.FuelPrices;
+import model.CarDetail;
+import model.FuelPrice;
 
 public class Logic {
-    public static float calcCostPer100km(CarDetails carDetails, FuelPrices fuelPrices) {
+    public static float calcCostPer100km(CarDetail carDetails, FuelPrice fuelPrices) {
         var costPer100km = 0.0f;
         var fuelType = carDetails.getFuelType();
         var fuelEcoUrban = carDetails.getFuelEcoUrban();
         var fuelEcoRural = carDetails.getFuelEcoRural();
 
         //Case 1: Petrol
-        if (fuelType == CarDetails.FuelType.PETROL91 ||
-            fuelType == CarDetails.FuelType.PETROL95 ||
-            fuelType == CarDetails.FuelType.PETROL100) {
+        if (fuelType == CarDetail.FuelType.PETROL91 ||
+            fuelType == CarDetail.FuelType.PETROL95 ||
+            fuelType == CarDetail.FuelType.PETROL100) {
             costPer100km = calcCostPetrolPer100km(fuelPrices, fuelType, fuelEcoUrban, fuelEcoRural);
-        } else if (fuelType == CarDetails.FuelType.DIESEL) {
+        } else if (fuelType == CarDetail.FuelType.DIESEL) {
             costPer100km = calcCostDieselPer100km(fuelPrices, fuelEcoUrban, fuelEcoRural);
         }
 
@@ -24,14 +24,14 @@ public class Logic {
         //TODO handle Electric
     }
 
-    public static float calcCostPetrolPer100km(FuelPrices fuelPrices, CarDetails.FuelType fuelType, float fuelEcoUrban,
+    public static float calcCostPetrolPer100km(FuelPrice fuelPrices, CarDetail.FuelType fuelType, float fuelEcoUrban,
                                                float fuelEcoRural) {
         var fuelPrice = 0.0f;
-        if (fuelType == CarDetails.FuelType.PETROL91) {
+        if (fuelType == CarDetail.FuelType.PETROL91) {
             fuelPrice = fuelPrices.getPetrol91();
-        } else if (fuelType == CarDetails.FuelType.PETROL95) {
+        } else if (fuelType == CarDetail.FuelType.PETROL95) {
             fuelPrice = fuelPrices.getPetrol95();
-        } else if (fuelType == CarDetails.FuelType.PETROL100) {
+        } else if (fuelType == CarDetail.FuelType.PETROL100) {
             fuelPrice = fuelPrices.getPetrol100();
         }
 
@@ -42,7 +42,7 @@ public class Logic {
         return (urbanCost100km + ruralCost100km) / 2;
     }
 
-    public static float calcCostDieselPer100km(FuelPrices fuelPrices, float fuelEcoUrban, float fuelEcoRural) {
+    public static float calcCostDieselPer100km(FuelPrice fuelPrices, float fuelEcoUrban, float fuelEcoRural) {
         var fuelPrice = fuelPrices.getDiesel();
         var ruc = fuelPrices.getRuc();
 

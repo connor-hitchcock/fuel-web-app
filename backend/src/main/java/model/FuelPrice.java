@@ -1,6 +1,6 @@
 package model;
 
-public class FuelPrices {
+public class FuelPrice {
     private String country;
     private float petrol91; //currency per litre
     private float petrol95;
@@ -9,8 +9,8 @@ public class FuelPrices {
     private float ruc; //currency per 100km (used in New Zealand)
     private float electric; //currency per kilowatt
 
-    public FuelPrices(String country, float petrol91, float petrol95, float petrol100, float diesel, float ruc,
-                      float electric) {
+    public FuelPrice(String country, float petrol91, float petrol95, float petrol100, float diesel, float ruc,
+                     float electric) {
         this.country = country;
         this.petrol91 = petrol91;
         this.petrol95 = petrol95;

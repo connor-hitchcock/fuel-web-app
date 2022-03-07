@@ -1,9 +1,9 @@
 package data;
 
-import model.FuelPrices;
+import model.FuelPrice;
 
-public class FuelPricesData {
-    public static FuelPrices newZealand = new FuelPrices(
+public class FuelPriceData {
+    public static FuelPrice newZealand = new FuelPrice(
             "New Zealand",
             2.62f,
             2.70f,

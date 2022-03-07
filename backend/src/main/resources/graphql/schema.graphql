@@ -7,7 +7,26 @@ enum FuelType {
     ELECTRIC
 }
 
-type CarDetails {
+type CarDetail {
+    licensePlate: ID
     engineSize: Float
     horsePower: Int
+    torque: Int
+    fuelType: FuelType
+    fuelEcoUrban: Float
+    fuelEcoRural: Float
+    make: String
+    model: String
+    year: Int
+    country: FuelPrice
+}
+
+type FuelPrice {
+    country: ID
+    petrol91: Float
+    petrol95: Float
+    petrol100: Float
+    diesel: Float
+    ruc: Float
+    electric: Float
 }

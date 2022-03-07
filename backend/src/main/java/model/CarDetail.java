@@ -1,6 +1,6 @@
 package model;
 
-public class CarDetails {
+public class CarDetail {
     public enum FuelType {
         PETROL91,
         PETROL95,
@@ -22,8 +22,8 @@ public class CarDetails {
     private int year;               //the year the car was made
     private String country;         //the country the car is driven in
 
-    public CarDetails(String licensePlate, float engineSize, int horsePower, int torque, FuelType fuelType,
-                      float fuelEcoUrban, float fuelEcoRural, String make, String model, int year, String country) {
+    public CarDetail(String licensePlate, float engineSize, int horsePower, int torque, FuelType fuelType,
+                     float fuelEcoUrban, float fuelEcoRural, String make, String model, int year, String country) {
         this.licensePlate = licensePlate;
         this.engineSize = engineSize;
         this.horsepower = horsePower;

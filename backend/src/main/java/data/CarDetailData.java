@@ -1,16 +1,16 @@
 package data;
 
-import model.CarDetails;
+import model.CarDetail;
 
 import java.util.List;
 
-public class CarDetailsData {
-    public static CarDetails connorCorolla = new CarDetails(
+public class CarDetailData {
+    public static CarDetail connorCorolla = new CarDetail(
             "AAA111",
             1.8f,
             147,
             180,
-            CarDetails.FuelType.PETROL91,
+            CarDetail.FuelType.PETROL91,
             9.9f,
             7.0f,
             "Toyota",
@@ -19,12 +19,12 @@ public class CarDetailsData {
             "New Zealand"
     );
 
-    public static CarDetails connorAudiA4 = new CarDetails(
+    public static CarDetail connorAudiA4 = new CarDetail(
             "BBB222",
             2.7f,
             190,
             400,
-            CarDetails.FuelType.DIESEL,
+            CarDetail.FuelType.DIESEL,
             9.0f,
             6.3f,
             "Audi",
@@ -33,12 +33,12 @@ public class CarDetailsData {
             "New Zealand"
     );
 
-    public static CarDetails connorDemio = new CarDetails(
+    public static CarDetail connorDemio = new CarDetail(
             "CCC333",
             1.3f,
             86,
             122,
-            CarDetails.FuelType.PETROL91,
+            CarDetail.FuelType.PETROL91,
             7.2f,
             5.5f,
             "Mazda",
@@ -47,12 +47,12 @@ public class CarDetailsData {
             "New Zealand"
     );
 
-    public static CarDetails connorJetta = new CarDetails(
+    public static CarDetail connorJetta = new CarDetail(
             "DDD444",
             2.0f,
             140,
             320,
-            CarDetails.FuelType.DIESEL,
+            CarDetail.FuelType.DIESEL,
             7.7f,
             5.7f,
             "Volkswagen",
@@ -61,12 +61,12 @@ public class CarDetailsData {
             "New Zealand"
     );
 
-    public static CarDetails fatherBigHorn = new CarDetails(
+    public static CarDetail fatherBigHorn = new CarDetail(
             "EEE555",
             3.1f,
             133,
             294,
-            CarDetails.FuelType.DIESEL,
+            CarDetail.FuelType.DIESEL,
             13.5f,
             10.5f,
             "Isuzu",
@@ -75,12 +75,12 @@ public class CarDetailsData {
             "New Zealand"
     );
 
-    public static CarDetails fatherCorolla = new CarDetails(
+    public static CarDetail fatherCorolla = new CarDetail(
             "FFF666",
             2.0f,
             126,
             300,
-            CarDetails.FuelType.DIESEL,
+            CarDetail.FuelType.DIESEL,
             7.2f,
             5.3f,
             "Toyota",
@@ -89,12 +89,12 @@ public class CarDetailsData {
             "New Zealand"
     );
 
-    public static CarDetails alexSwift = new CarDetails(
+    public static CarDetail alexSwift = new CarDetail(
             "GGG777",
             1.5f,
             102,
             133,
-            CarDetails.FuelType.PETROL91,
+            CarDetail.FuelType.PETROL91,
             8.4f,
             6.3f,
             "Suzuki",
@@ -103,6 +103,6 @@ public class CarDetailsData {
             "New Zealand"
     );
 
-    public static List<CarDetails> allCars = List.of(connorCorolla, connorAudiA4, connorDemio, connorJetta,
+    public static List<CarDetail> allCars = List.of(connorCorolla, connorAudiA4, connorDemio, connorJetta,
             fatherBigHorn, fatherCorolla, alexSwift);
 }
