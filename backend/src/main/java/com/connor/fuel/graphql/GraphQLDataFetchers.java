@@ -12,16 +12,16 @@ public class GraphQLDataFetchers {
     //Using hardcoded data at the moment
 
     public DataFetcher getCarDetailsDataFetcher() {
-        return dataFetchingEnvironment -> CarDetailData.allCarDetailsMapped;
+        return env -> CarDetailData.allCarDetailsMapped;
     }
 
     public DataFetcher getFuelPricesDataFetcher() {
-        return dataFetchingEnvironment -> FuelPriceData.allFuelPricesMapped;
+        return env -> FuelPriceData.allFuelPricesMapped;
     }
 
     public DataFetcher getCarByPlateDataFetcher() {
-        return dataFetchingEnvironment -> {
-            String licensePlate = dataFetchingEnvironment.getArgument("licensePlate");
+        return env -> {
+            String licensePlate = env.getArgument("licensePlate");
             return CarDetailData.allCarDetailsMapped
                     .stream()
                     .filter(carDetail -> carDetail.get("licensePlate").equals(licensePlate))
@@ -31,8 +31,8 @@ public class GraphQLDataFetchers {
     }
 
     public DataFetcher getFuelPriceDataFetcher() {
-        return dataFetchingEnvironment -> {
-            Map<String, Object> carDetail = dataFetchingEnvironment.getSource();
+        return env -> {
+            Map<String, Object> carDetail = env.getSource();
             String country = (String) carDetail.get("country");
             return FuelPriceData.allFuelPricesMapped
                     .stream()
