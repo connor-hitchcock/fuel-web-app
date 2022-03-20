@@ -9,13 +9,14 @@ public class Logic {
         var fuelType = carDetails.getFuelType();
         var fuelEcoUrban = carDetails.getFuelEcoUrban();
         var fuelEcoRural = carDetails.getFuelEcoRural();
+        var urbanRuralRatio = 0.5f;
 
         if (fuelType == CarDetail.FuelType.PETROL91 ||
             fuelType == CarDetail.FuelType.PETROL95 ||
             fuelType == CarDetail.FuelType.PETROL100) {
-            costPer100km = calcCostPetrolPer100km(fuelPrices, fuelType, fuelEcoUrban, fuelEcoRural);
+            costPer100km = calcCostPetrolPer100km(fuelPrices, fuelType, fuelEcoUrban, fuelEcoRural, urbanRuralRatio);
         } else if (fuelType == CarDetail.FuelType.DIESEL) {
-            costPer100km = calcCostDieselPer100km(fuelPrices, fuelEcoUrban, fuelEcoRural);
+            costPer100km = calcCostDieselPer100km(fuelPrices, fuelEcoUrban, fuelEcoRural, urbanRuralRatio);
         }
 
         return costPer100km;
@@ -23,7 +24,7 @@ public class Logic {
     }
 
     public static float calcCostPetrolPer100km(FuelPrice fuelPrices, CarDetail.FuelType fuelType, float fuelEcoUrban,
-                                               float fuelEcoRural) {
+                                               float fuelEcoRural, float urbanRuralRatio) {
         var fuelPrice = 0.0f;
         if (fuelType == CarDetail.FuelType.PETROL91) {
             fuelPrice = fuelPrices.getPetrol91();
@@ -33,21 +34,18 @@ public class Logic {
             fuelPrice = fuelPrices.getPetrol100();
         }
 
-        var urbanCost100km = fuelPrice * fuelEcoUrban;
-        var ruralCost100km = fuelPrice * fuelEcoRural;
-
-        //Temporary just taking an average
-        return (urbanCost100km + ruralCost100km) / 2;
+        var urbanCost = fuelPrice * (fuelEcoUrban * urbanRuralRatio);
+        var ruralCost = fuelPrice * (fuelEcoRural * (1 - urbanRuralRatio));
+        return urbanCost + ruralCost;
     }
 
-    public static float calcCostDieselPer100km(FuelPrice fuelPrices, float fuelEcoUrban, float fuelEcoRural) {
+    public static float calcCostDieselPer100km(FuelPrice fuelPrices, float fuelEcoUrban, float fuelEcoRural,
+                                               float urbanRuralRatio) {
         var fuelPrice = fuelPrices.getDiesel();
         var ruc = fuelPrices.getRuc();
 
-        var urbanCost100km = fuelPrice * fuelEcoUrban + ruc;
-        var ruralCost100km = fuelPrice * fuelEcoRural + ruc;
-
-        //Temporary just taking an average
-        return (urbanCost100km + ruralCost100km) / 2;
+        var urbanCost = fuelPrice * (fuelEcoUrban * urbanRuralRatio);
+        var ruralCost = fuelPrice * (fuelEcoRural * (1 - urbanRuralRatio));
+        return urbanCost + ruralCost + ruc;
     }
 }
