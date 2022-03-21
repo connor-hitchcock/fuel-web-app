@@ -18,7 +18,7 @@ public class PersonCar {
 
     public Map<String, Object> getPersonCarsMap() {
         Map<String, Object> map = new HashMap<>();
-        map.put("personId", personID);
+        map.put("personID", personID);
         map.put("licensePlate", licensePlate);
         map.put("urbanRuralRatio", urbanRuralRatio);
         map.put("fuelCost100km", fuelCost100km);

@@ -43,8 +43,8 @@ type Person {
 }
 
 type PersonCar {
-    personID: ID
-    licensePlate: ID
+    personID: Int
+    licensePlate: String
     urbanRuralRatio: Float
     fuelCost100km: Float
 }
