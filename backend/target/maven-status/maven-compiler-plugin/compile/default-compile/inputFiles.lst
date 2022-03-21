@@ -1,0 +1,14 @@
+/Users/connorhitchcock/Documents/repos/fuel-web-app/backend/src/main/java/com/connor/fuel/controller/Logic.java
+/Users/connorhitchcock/Documents/repos/fuel-web-app/backend/src/main/java/com/connor/fuel/model/CarDetail.java
+/Users/connorhitchcock/Documents/repos/fuel-web-app/backend/src/main/java/com/connor/fuel/data/PersonData.java
+/Users/connorhitchcock/Documents/repos/fuel-web-app/backend/src/main/java/com/connor/fuel/graphql/LocalCorsConfiguration.java
+/Users/connorhitchcock/Documents/repos/fuel-web-app/backend/src/main/java/com/connor/fuel/GraphQLAPI.java
+/Users/connorhitchcock/Documents/repos/fuel-web-app/backend/src/main/java/com/connor/fuel/data/CarDetailData.java
+/Users/connorhitchcock/Documents/repos/fuel-web-app/backend/src/main/java/com/connor/fuel/data/FuelPriceData.java
+/Users/connorhitchcock/Documents/repos/fuel-web-app/backend/src/main/java/com/connor/fuel/graphql/GraphQLDataFetchers.java
+/Users/connorhitchcock/Documents/repos/fuel-web-app/backend/src/main/java/com/connor/fuel/Main.java
+/Users/connorhitchcock/Documents/repos/fuel-web-app/backend/src/main/java/com/connor/fuel/model/FuelPrice.java
+/Users/connorhitchcock/Documents/repos/fuel-web-app/backend/src/main/java/com/connor/fuel/model/PersonCar.java
+/Users/connorhitchcock/Documents/repos/fuel-web-app/backend/src/main/java/com/connor/fuel/graphql/GraphQLProvider.java
+/Users/connorhitchcock/Documents/repos/fuel-web-app/backend/src/main/java/com/connor/fuel/model/Person.java
+/Users/connorhitchcock/Documents/repos/fuel-web-app/backend/src/main/java/com/connor/fuel/data/PersonCarData.java
