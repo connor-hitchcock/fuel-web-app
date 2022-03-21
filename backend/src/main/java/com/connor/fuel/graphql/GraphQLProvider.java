@@ -53,9 +53,9 @@ public class GraphQLProvider {
                 .type(newTypeWiring("Query")
                         .dataFetcher("fuelPrices", dataFetchers.getFuelPricesDataFetcher()))
                 .type(newTypeWiring("Query")
-                        .dataFetcher("person", dataFetchers.getPersonDataFetcher()))
+                        .dataFetcher("people", dataFetchers.getPersonDataFetcher()))
                 .type(newTypeWiring("Query")
-                        .dataFetcher("personCar", dataFetchers.getPersonCarDataFetcher()))
+                        .dataFetcher("personCars", dataFetchers.getPersonCarDataFetcher()))
                 .type(newTypeWiring("Query")
                         .dataFetcher("carByPlate", dataFetchers.getCarByPlateDataFetcher()))
                 .type(newTypeWiring("CarDetail") //TODO don't think this name is correct
