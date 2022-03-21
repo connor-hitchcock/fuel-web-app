@@ -24,7 +24,7 @@ public class GraphQLProvider {
     private GraphQL graphQL;
 
     @Autowired
-    GraphQLDataFetchers graphQLDataFetchers;
+    GraphQLDataFetchers dataFetchers;
 
     @Bean
     public GraphQL graphQL() {
@@ -49,13 +49,29 @@ public class GraphQLProvider {
     private RuntimeWiring buildWiring() {
         return RuntimeWiring.newRuntimeWiring()
                 .type(newTypeWiring("Query")
-                        .dataFetcher("carDetails", graphQLDataFetchers.getCarDetailsDataFetcher()))
+                        .dataFetcher("carDetails", dataFetchers.getCarDetailsDataFetcher()))
                 .type(newTypeWiring("Query")
-                        .dataFetcher("fuelPrices", graphQLDataFetchers.getFuelPricesDataFetcher()))
+                        .dataFetcher("fuelPrices", dataFetchers.getFuelPricesDataFetcher()))
                 .type(newTypeWiring("Query")
-                        .dataFetcher("carByPlate", graphQLDataFetchers.getCarByPlateDataFetcher()))
-                .type(newTypeWiring("CarDetail")
-                        .dataFetcher("fuelPrice", graphQLDataFetchers.getFuelPriceDataFetcher()))
+                        .dataFetcher("person", dataFetchers.getPersonDataFetcher()))
+                .type(newTypeWiring("Query")
+                        .dataFetcher("personCar", dataFetchers.getPersonCarDataFetcher()))
+                .type(newTypeWiring("Query")
+                        .dataFetcher("carByPlate", dataFetchers.getCarByPlateDataFetcher()))
+                .type(newTypeWiring("CarDetail") //TODO don't think this name is correct
+                        .dataFetcher("fuelPrice", dataFetchers.getFuelPriceDataFetcher()))
+                .type(newTypeWiring("Query")
+                        .dataFetcher("personByID", dataFetchers.getPersonByIDDataFetcher()))
+                .type(newTypeWiring("Query")
+                        .dataFetcher("peopleByFirstName", dataFetchers.getPeopleByFirstNameDataFetcher()))
+                .type(newTypeWiring("Query")
+                        .dataFetcher("peopleByFirstLastName", dataFetchers.getPeopleByFirstLastNameDataFetcher()))
+                .type(newTypeWiring("Query")
+                        .dataFetcher("personCarsByID", dataFetchers.getPersonCarsByPersonIDDataFetcher()))
+                .type(newTypeWiring("Query")
+                        .dataFetcher("personCarsByPlate", dataFetchers.getPersonCarsByLicensePlateDataFetcher()))
+                .type(newTypeWiring("Query")
+                        .dataFetcher("personCarsByIDPlate", dataFetchers.getPersonCarByIDLicensePlateDataFetcher()))
                 .build();
     }
 

@@ -2,6 +2,9 @@ package com.connor.fuel.data;
 
 import com.connor.fuel.model.PersonCar;
 
+import java.util.List;
+import java.util.Map;
+
 public class PersonCarData {
     public static PersonCar connorsCorolla = new PersonCar(
             1,
@@ -50,5 +53,15 @@ public class PersonCarData {
             "GGG777",
             0.9f,
             0.0f //TODO call login to calculate
+    );
+
+    public static List<PersonCar> allPersonCars = List.of(
+            connorsCorolla, connorsAudiA4, connorsDemio, connorsJetta, fathersBigHorn, fathersCorolla, alexsSwift
+    );
+
+    public static List<Map<String, Object>> allPersonCarsMapped = List.of(
+            connorsCorolla.getPersonCarsMap(), connorsAudiA4.getPersonCarsMap(), connorsDemio.getPersonCarsMap(),
+            connorsJetta.getPersonCarsMap(), fathersBigHorn.getPersonCarsMap(), fathersCorolla.getPersonCarsMap(),
+            alexsSwift.getPersonCarsMap()
     );
 }
