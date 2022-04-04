@@ -9,6 +9,7 @@ import com.auth0.jwt.exceptions.JWTDecodeException;
 import com.auth0.jwt.exceptions.JWTVerificationException;
 import com.auth0.jwt.interfaces.DecodedJWT;
 
+import java.util.Base64;
 import java.util.Map;
 
 //note: The secret key must have a bit size >= the size of the output hash.
@@ -57,19 +58,13 @@ public class JWTHandler {
     }
 
     /**
-     * Decode a JWT
+     * Decodes the JWT using Base64
      * @param token the JWT in question
-     * @return the decoded JWT
+     * @return the decoded payload.
      */
-    public DecodedJWT decodeJWT(String token) {
-        DecodedJWT jwt = null;
-        try {
-            jwt = JWT.decode(token);
-        } catch (JWTDecodeException e) {
-            //Invalid token
-            System.out.println(e);
-        }
-        return jwt;
+    public String decodeJWTPayload(DecodedJWT token) {
+        Base64.Decoder decoder = Base64.getUrlDecoder();
+        return new String(decoder.decode(token.getPayload()));
     }
 
 

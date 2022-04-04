@@ -1,5 +1,6 @@
 package com.connor.fuel;
 
+import com.auth0.jwt.JWT;
 import com.auth0.jwt.interfaces.DecodedJWT;
 import com.connor.fuel.authentication.JWTHandler;
 import com.connor.fuel.data.CarDetailData;
@@ -26,7 +27,7 @@ public class Main {
         System.out.printf("Created Token: %s\n", token);
         DecodedJWT verifiedToken = jwtHandler.verifyJWT(token);
         System.out.printf("Verified Token: %s\n", verifiedToken.getPayload());
-        DecodedJWT decodedToken = jwtHandler.decodeJWT(token);
-        System.out.printf("Decoded Token: %s\n", decodedToken.getPayload());
+        String decodedPayload = jwtHandler.decodeJWTPayload(verifiedToken);
+        System.out.printf("Decoded Payload: %s\n", decodedPayload);
     }
 }
