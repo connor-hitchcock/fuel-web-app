@@ -8,6 +8,9 @@ import com.connor.fuel.controller.DatabaseController;
 import com.connor.fuel.data.CarDetailData;
 import com.connor.fuel.data.FuelPriceData;
 import com.connor.fuel.model.CarDetail;
+import com.connor.fuel.model.FuelPrice;
+import com.connor.fuel.model.Person;
+import com.connor.fuel.model.PersonCar;
 
 import java.util.HashMap;
 
@@ -44,8 +47,30 @@ public class Main {
         System.out.printf("Same password 2 (should be false): %s\n", samePasswordFalse);
     }
 
+    public static void databaseTesting() {
+        var carDetailResults = DatabaseController.getAllCarDetailsFromDB();
+        for (CarDetail carDetail: carDetailResults) {
+            System.out.println(carDetail);
+        }
+        System.out.println("-----------------------------------------------------------------------------------------");
+        var fuelPriceDetails = DatabaseController.getAllFuelPricesFromDB();
+        for (FuelPrice fuelPrice: fuelPriceDetails) {
+            System.out.println(fuelPrice);
+        }
+        System.out.println("-----------------------------------------------------------------------------------------");
+        var personDetails = DatabaseController.getAllPeopleFromDB();
+        for (Person person: personDetails) {
+            System.out.println(person);
+        }
+        System.out.println("-----------------------------------------------------------------------------------------");
+        var personCarDetails = DatabaseController.getAllPersonCarsFromDB();
+        for (PersonCar personCar: personCarDetails) {
+            System.out.println(personCar);
+        }
+        System.out.println("-----------------------------------------------------------------------------------------");
+    }
+
     public static void main(String[] args) {
-        var results = DatabaseController.executeQuery("SELECT email from Person");
-        System.out.println(results);
+        databaseTesting();
     }
 }

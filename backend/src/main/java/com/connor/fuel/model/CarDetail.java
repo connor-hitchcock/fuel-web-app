@@ -2,6 +2,7 @@ package com.connor.fuel.model;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 
 public class CarDetail {
     public enum FuelType {
@@ -11,6 +12,24 @@ public class CarDetail {
         DIESEL,
         HYBRID,
         ELECTRIC
+    }
+
+    public static FuelType strToFuelType(String fuelTypeStr) {
+        FuelType fuelType = null;
+        if (Objects.equals(fuelTypeStr, "PETROL91")) {
+            fuelType = FuelType.PETROL91;
+        } else if (Objects.equals(fuelTypeStr, "PETROL95")) {
+            fuelType = FuelType.PETROL95;
+        } else if (Objects.equals(fuelTypeStr, "PETROL100")) {
+            fuelType = FuelType.PETROL100;
+        } else if (Objects.equals(fuelTypeStr, "DIESEL")) {
+            fuelType = FuelType.DIESEL;
+        } else if (Objects.equals(fuelTypeStr, "HYBRID")) {
+            fuelType = FuelType.HYBRID;
+        } else if (Objects.equals(fuelTypeStr, "ELECTRIC")) {
+            fuelType = FuelType.ELECTRIC;
+        }
+        return fuelType;
     }
 
     private String licensePlate;    //unique and non-null primary identifier, the car's license plate
