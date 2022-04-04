@@ -4,6 +4,7 @@ import com.auth0.jwt.JWT;
 import com.auth0.jwt.interfaces.DecodedJWT;
 import com.connor.fuel.authentication.JWTHandler;
 import com.connor.fuel.authentication.PasswordHash;
+import com.connor.fuel.controller.DatabaseController;
 import com.connor.fuel.data.CarDetailData;
 import com.connor.fuel.data.FuelPriceData;
 import com.connor.fuel.model.CarDetail;
@@ -44,6 +45,6 @@ public class Main {
     }
 
     public static void main(String[] args) {
-        passwordHashingTesting();
+        DatabaseController.connect();
     }
 }
