@@ -3,6 +3,7 @@ package com.connor.fuel;
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.interfaces.DecodedJWT;
 import com.connor.fuel.authentication.JWTHandler;
+import com.connor.fuel.authentication.PasswordHash;
 import com.connor.fuel.data.CarDetailData;
 import com.connor.fuel.data.FuelPriceData;
 import com.connor.fuel.model.CarDetail;
@@ -19,7 +20,7 @@ public class Main {
         }
     }
 
-    public static void main(String[] args) {
+    public static void jwtTesting() {
         JWTHandler jwtHandler = new JWTHandler();
         var payload = new HashMap<String, String>();
         payload.put("msg", "Hello World");
@@ -29,5 +30,18 @@ public class Main {
         System.out.printf("Verified Token: %s\n", verifiedToken.getPayload());
         String decodedPayload = jwtHandler.decodeJWTPayload(verifiedToken);
         System.out.printf("Decoded Payload: %s\n", decodedPayload);
+    }
+
+    public static void passwordHashingTesting() {
+        String badPassword = "ThisIsAGoodPassword69#";
+        String hashedPassword = PasswordHash.hashPasswordSHA256(badPassword);
+        System.out.printf("Original password: %s\n", badPassword);
+        System.out.printf("Hashed password: %s\n", hashedPassword);
+        boolean samePassword = PasswordHash.checkPasswordMatchesHash(badPassword, hashedPassword);
+        System.out.printf("Same password: %s\n", samePassword);
+    }
+
+    public static void main(String[] args) {
+        passwordHashingTesting();
     }
 }
