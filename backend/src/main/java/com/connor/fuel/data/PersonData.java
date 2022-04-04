@@ -9,7 +9,9 @@ import static com.connor.fuel.data.PersonCarData.*;
 
 public class PersonData {
     public static Person connorHitchcock = new Person(
-            1,
+            "fergus.hitchcock@gmail.com",
+            "guchii",
+            "null",
             "Connor",
             "Fergus",
             "Hitchcock",
@@ -19,7 +21,9 @@ public class PersonData {
     );
 
     public static Person connorsFather = new Person(
-            2,
+            "fergus.hitchcock@xtra.co.nz",
+            "fergusHitchcock",
+            "null",
             "Fergus",
             "Paul",
             "Hitchcock",
@@ -29,7 +33,9 @@ public class PersonData {
     );
 
     public static Person alexHobson = new Person(
-            3,
+            "alex.hobson@gmail.com",
+            "alexHobson",
+            "null",
             "Alex",
             "Middlename",
             "Hobson",

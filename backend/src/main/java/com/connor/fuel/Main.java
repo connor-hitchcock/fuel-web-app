@@ -38,7 +38,9 @@ public class Main {
         System.out.printf("Original password: %s\n", badPassword);
         System.out.printf("Hashed password: %s\n", hashedPassword);
         boolean samePassword = PasswordHash.checkPasswordMatchesHash(badPassword, hashedPassword);
-        System.out.printf("Same password: %s\n", samePassword);
+        System.out.printf("Same password (should be true): %s\n", samePassword);
+        boolean samePasswordFalse = PasswordHash.checkPasswordMatchesHash("NotTheSamePassword", hashedPassword);
+        System.out.printf("Same password 2 (should be false): %s\n", samePasswordFalse);
     }
 
     public static void main(String[] args) {

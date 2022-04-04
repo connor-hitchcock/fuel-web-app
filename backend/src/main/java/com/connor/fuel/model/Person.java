@@ -5,7 +5,9 @@ import java.util.List;
 import java.util.Map;
 
 public class Person {
-    private int personID;
+    private String email;
+    private String username;
+    private String password;
     private String firstName;
     private String middleName;
     private String lastName;
@@ -13,9 +15,11 @@ public class Person {
     private String birthday;
     private List<PersonCar> personCars;
 
-    public Person(int personID, String firstName, String middleName, String lastName, int age, String birthday,
-                  List<PersonCar> personCars) {
-        this.personID = personID;
+    public Person(String email, String username, String password, String firstName, String middleName,
+                  String lastName, int age, String birthday, List<PersonCar> personCars) {
+        this.email = email;
+        this.username = username;
+        this.password = password;
         this.firstName = firstName;
         this.middleName = middleName;
         this.lastName = lastName;
@@ -26,7 +30,9 @@ public class Person {
 
     public Map<String, Object> getPersonMap() {
         Map<String, Object> map = new HashMap<>();
-        map.put("personID", personID);
+        map.put("email", email);
+        map.put("username", username);
+        map.put("password", password);
         map.put("firstName", firstName);
         map.put("middleName", middleName);
         map.put("lastName", lastName);
@@ -36,12 +42,28 @@ public class Person {
         return map;
     }
 
-    public int getPersonID() {
-        return personID;
+    public String getEmail() {
+        return email;
     }
 
-    public void setPersonID(int personID) {
-        this.personID = personID;
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public String getFirstName() {
