@@ -45,6 +45,7 @@ public class Main {
     }
 
     public static void main(String[] args) {
-        DatabaseController.connect();
+        var results = DatabaseController.executeQuery("SELECT email from Person");
+        System.out.println(results);
     }
 }
