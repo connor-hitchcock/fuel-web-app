@@ -33,7 +33,7 @@ type FuelPrice {
 }
 
 type Person {
-    personID: ID
+    email: ID
     firstName: String
     middleName: String
     lastName: String
@@ -43,8 +43,8 @@ type Person {
 }
 
 type PersonCar {
-    personID: Int
-    licensePlate: String
+    email: ID
+    licensePlate: ID
     urbanRuralRatio: Float
     fuelCost100km: Float
 }
@@ -54,13 +54,13 @@ type Query {
     carByPlate(licensePlate: ID): CarDetail
     fuelPrices: [FuelPrice]
     people: [Person]
-    personByID(personID: ID): Person
+    personByID(email: ID): Person
     peopleByFirstName(firstName: String): [Person]
     peopleByFirstLastName(firstName: String, lastName: String): [Person]
     personCars: [PersonCar]
-    personCarByID(personID: ID): [PersonCar]
+    personCarByID(email: ID): [PersonCar]
     personCarByPlate(licensePlate: ID): [PersonCar]
-    personCarByIDPlate(personID: ID, licensePlate: ID): PersonCar
+    personCarByIDPlate(email: ID, licensePlate: ID): PersonCar
 }
 
 #type Mutation {

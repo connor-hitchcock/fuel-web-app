@@ -49,13 +49,13 @@ public class GraphQLDataFetchers {
         };
     }
 
-    public DataFetcher getPersonByIDDataFetcher() {
+    public DataFetcher getPersonByEmailDataFetcher() {
         return env -> {
             Map<String, Object> personObj = env.getSource();
-            int personID = (int) personObj.get("personID");
+            String email = (String) personObj.get("email");
             return DatabaseController.getAllPeopleFromDB()
                     .stream()
-                    .filter(person -> person.get("personID").equals(personID))
+                    .filter(person -> person.get("email").equals(email))
                     .findFirst()
                     .orElse(null);
         };
@@ -87,13 +87,13 @@ public class GraphQLDataFetchers {
         };
     }
 
-    public DataFetcher getPersonCarsByPersonIDDataFetcher() {
+    public DataFetcher getPersonCarsByEmailDataFetcher() {
         return env -> {
             Map<String, Object> personCarObj = env.getSource();
-            int personID = (int) personCarObj.get("personID");
+            String personID = (String) personCarObj.get("email");
             return DatabaseController.getAllPersonCarsFromDB()
                     .stream()
-                    .filter(personCar -> personCar.get("personID").equals(personID))
+                    .filter(personCar -> personCar.get("email").equals(personID))
                     .findAny()
                     .orElse(null);
         };
@@ -111,14 +111,14 @@ public class GraphQLDataFetchers {
         };
     }
 
-    public DataFetcher getPersonCarByIDLicensePlateDataFetcher() {
+    public DataFetcher getPersonCarByEmailLicensePlateDataFetcher() {
         return env -> {
             Map<String, Object> personCarObj = env.getSource();
-            int personID = (int) personCarObj.get("personID");
+            String personID = (String) personCarObj.get("email");
             String licensePlate = (String) personCarObj.get("licensePlate");
             return DatabaseController.getAllPersonCarsFromDB()
                     .stream()
-                    .filter(personCar -> personCar.get("personID").equals(personID))
+                    .filter(personCar -> personCar.get("email").equals(personID))
                     .filter(personCar -> personCar.get("licensePlate").equals(licensePlate))
                     .findFirst()
                     .orElse(null);
