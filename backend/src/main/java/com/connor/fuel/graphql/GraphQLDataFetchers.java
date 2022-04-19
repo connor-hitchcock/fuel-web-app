@@ -8,7 +8,7 @@ import java.util.Map;
 
 @Component
 public class GraphQLDataFetchers {
-    //Using hardcoded data at the moment
+    //TODO owned car graphql query does not work
 
     public DataFetcher getCarDetailsDataFetcher() {
         return env -> DatabaseController.getAllCarDetailsFromDB();
@@ -90,10 +90,10 @@ public class GraphQLDataFetchers {
     public DataFetcher getPersonCarsByEmailDataFetcher() {
         return env -> {
             Map<String, Object> personCarObj = env.getSource();
-            String personID = (String) personCarObj.get("email");
+            String email = (String) personCarObj.get("email");
             return DatabaseController.getAllPersonCarsFromDB()
                     .stream()
-                    .filter(personCar -> personCar.get("email").equals(personID))
+                    .filter(personCar -> personCar.get("email").equals(email))
                     .findAny()
                     .orElse(null);
         };

@@ -39,7 +39,7 @@ type Person {
     lastName: String
     age: Int
     birthday: String
-    personCars: [PersonCar]
+    ownedCars: [PersonCar]
 }
 
 type PersonCar {
@@ -57,6 +57,7 @@ type Query {
     personByID(email: ID): Person
     peopleByFirstName(firstName: String): [Person]
     peopleByFirstLastName(firstName: String, lastName: String): [Person]
+    ownedCars: [PersonCar]
     personCars: [PersonCar]
     personCarByID(email: ID): [PersonCar]
     personCarByPlate(licensePlate: ID): [PersonCar]
