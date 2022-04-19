@@ -155,8 +155,7 @@ public class DatabaseController {
                         rs.getString("middleName"),
                         rs.getString("lastName"),
                         rs.getInt("age"),
-                        rs.getString("birthday"),
-                        null //TODO figure out how this will be handled!!!
+                        rs.getString("birthday")
                 ));
             }
         } catch (SQLException e) {

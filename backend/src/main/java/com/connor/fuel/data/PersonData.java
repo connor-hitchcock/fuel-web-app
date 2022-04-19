@@ -16,8 +16,7 @@ public class PersonData {
             "Fergus",
             "Hitchcock",
             23,
-            "17-07-1999",
-            List.of(connorsCorolla, connorsAudiA4, connorsDemio, connorsJetta) //TODO Might need to get mapped version
+            "17-07-1999"
     );
 
     public static Person connorsFather = new Person(
@@ -28,8 +27,7 @@ public class PersonData {
             "Paul",
             "Hitchcock",
             49,
-            "29-04-1973",
-            List.of(fathersBigHorn, fathersCorolla) //TODO Might need to get mapped version
+            "29-04-1973"
     );
 
     public static Person alexHobson = new Person(
@@ -40,8 +38,7 @@ public class PersonData {
             "Middlename",
             "Hobson",
             23,
-            "01-01-1999",
-            List.of(alexsSwift) //TODO Might need to get mapped version
+            "01-01-1999"
     );
 
     public static List<Person> allPeople = List.of(

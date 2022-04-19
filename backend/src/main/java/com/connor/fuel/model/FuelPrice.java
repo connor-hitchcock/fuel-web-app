@@ -90,4 +90,10 @@ public class FuelPrice {
     public void setElectric(float electric) {
         this.electric = electric;
     }
+
+    @Override
+    public String toString() {
+        return String.format("%s, Petrol 91: $%.2f, Petrol 95: $%.2f, Petrol 100: $%.2f, Diesel: $%.2f, RUC/100km: $%.2f, Electricity: $%.2f kWh",
+                this.country, this.petrol91, this.petrol95, this.petrol100, this.diesel, this.ruc, this.electric);
+    }
 }

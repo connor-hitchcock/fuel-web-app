@@ -56,4 +56,10 @@ public class PersonCar {
     public void setFuelCost100km(float fuelCost100km) {
         this.fuelCost100km = fuelCost100km;
     }
+
+    @Override
+    public String toString() {
+        return String.format("%s, %s, Urban/Rural ratio: %.3f, Cost/100km: $%.2f",
+                this.email, this.licensePlate, this.urbanRuralRatio, this.fuelCost100km);
+    }
 }

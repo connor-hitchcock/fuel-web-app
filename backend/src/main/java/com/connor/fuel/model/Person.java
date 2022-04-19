@@ -13,10 +13,9 @@ public class Person {
     private String lastName;
     private int age;
     private String birthday;
-    private List<PersonCar> personCars;
 
     public Person(String email, String username, String password, String firstName, String middleName,
-                  String lastName, int age, String birthday, List<PersonCar> personCars) {
+                  String lastName, int age, String birthday) {
         this.email = email;
         this.username = username;
         this.password = password;
@@ -25,7 +24,6 @@ public class Person {
         this.lastName = lastName;
         this.age = age;
         this.birthday = birthday;
-        this.personCars = personCars;
     }
 
     public Map<String, Object> getPersonMap() {
@@ -38,7 +36,6 @@ public class Person {
         map.put("lastName", lastName);
         map.put("age", age);
         map.put("birthday", birthday);
-        map.put("personCars", personCars);
         return map;
     }
 
@@ -106,11 +103,9 @@ public class Person {
         this.birthday = birthday;
     }
 
-    public List<PersonCar> getPersonCars() {
-        return personCars;
-    }
-
-    public void setPersonCars(List<PersonCar> personCars) {
-        this.personCars = personCars;
+    @Override
+    public String toString() {
+        return String.format("%s, %s, %s, %s %s %s, %d, %s",
+                this.email, this.username, this.password, this.firstName, this.middleName, this.lastName, this.age, this.birthday);
     }
 }

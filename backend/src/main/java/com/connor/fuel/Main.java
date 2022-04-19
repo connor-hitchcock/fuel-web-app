@@ -49,21 +49,25 @@ public class Main {
 
     public static void databaseTesting() {
         var carDetailResults = DatabaseController.getAllCarDetailsFromDB();
+        System.out.println("All Car Details:");
         for (CarDetail carDetail: carDetailResults) {
             System.out.println(carDetail);
         }
         System.out.println("-----------------------------------------------------------------------------------------");
         var fuelPriceDetails = DatabaseController.getAllFuelPricesFromDB();
+        System.out.println("All Fuel Price Details:");
         for (FuelPrice fuelPrice: fuelPriceDetails) {
             System.out.println(fuelPrice);
         }
         System.out.println("-----------------------------------------------------------------------------------------");
         var personDetails = DatabaseController.getAllPeopleFromDB();
+        System.out.println("All Person Details:");
         for (Person person: personDetails) {
             System.out.println(person);
         }
         System.out.println("-----------------------------------------------------------------------------------------");
         var personCarDetails = DatabaseController.getAllPersonCarsFromDB();
+        System.out.println("All Person Car Details:");
         for (PersonCar personCar: personCarDetails) {
             System.out.println(personCar);
         }
