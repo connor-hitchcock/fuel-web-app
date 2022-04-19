@@ -1,6 +1,8 @@
 package com.connor.fuel.model;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class PersonCar {
@@ -25,6 +27,19 @@ public class PersonCar {
         this.licensePlate = (String) personCarMap.get("licensePlate");
         this.urbanRuralRatio = (float) personCarMap.get("urbanRuralRatio");
         this.fuelCost100km = (float) personCarMap.get("fuelCost100km");
+    }
+
+    /**
+     * Converts a list of person car mapped objects to a list of person car objects
+     * @param personCars the list of person car mapped objects
+     * @return list of person car objects
+     */
+    public static List<PersonCar> convertListPersonCarToObjects(List<Map<String, Object>> personCars) {
+        var personCarsList = new ArrayList<PersonCar>();
+        for (var personCarMap: personCars) {
+            personCarsList.add(new PersonCar(personCarMap));
+        }
+        return personCarsList;
     }
 
     public Map<String, Object> getPersonCarsMap() {

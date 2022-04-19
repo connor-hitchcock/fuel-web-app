@@ -40,7 +40,6 @@ public class Logic {
         return costPer100km;
     }
 
-    //Temp for the API
 //    public static void updateFuelCosts() {
 //        for (PersonCar personCar: PersonCarData.allPersonCars) {
 //            String licensePlate = personCar.getLicensePlate();

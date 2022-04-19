@@ -1,5 +1,6 @@
 package com.connor.fuel.model;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -39,6 +40,19 @@ public class Person {
         this.lastName = (String) personMap.get("lastName");
         this.age = (int) personMap.get("age");
         this.birthday = (String) personMap.get("birthday");
+    }
+
+    /**
+     * Converts a list of person mapped objects to a list of person objects
+     * @param people the list of people mapped objects
+     * @return list of person objects
+     */
+    public static List<Person> convertListPersonMapToObjects(List<Map<String, Object>> people) {
+        var peopleList = new ArrayList<Person>();
+        for (var personMap: people) {
+            peopleList.add(new Person(personMap));
+        }
+        return peopleList;
     }
 
     public Map<String, Object> getPersonMap() {

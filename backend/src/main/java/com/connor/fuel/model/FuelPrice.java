@@ -1,6 +1,8 @@
 package com.connor.fuel.model;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class FuelPrice {
@@ -35,6 +37,19 @@ public class FuelPrice {
         this.diesel = (float) fuelPriceMap.get("diesel");
         this.ruc = (float) fuelPriceMap.get("ruc");
         this.electric = (float) fuelPriceMap.get("electric");
+    }
+
+    /**
+     * Converts a list of fuel price mapped objects to a list of fuel price objects
+     * @param fuelPrices the list of car detail mapped objects
+     * @return list of fuel price objects
+     */
+    public static List<FuelPrice> convertListFuelPriceMapToObjects(List<Map<String, Object>> fuelPrices) {
+        var fuelPriceList = new ArrayList<FuelPrice>();
+        for (var fuelPriceMap: fuelPrices) {
+            fuelPriceList.add(new FuelPrice(fuelPriceMap));
+        }
+        return fuelPriceList;
     }
 
     public Map<String, Object> getFuelPriceMap() {

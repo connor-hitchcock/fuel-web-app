@@ -1,8 +1,6 @@
 package com.connor.fuel.model;
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Objects;
+import java.util.*;
 
 public class CarDetail {
     public enum FuelType {
@@ -104,6 +102,19 @@ public class CarDetail {
         this.model = (String) carDetailMap.get("model");
         this.year = (int) carDetailMap.get("year");
         this.country = (String) carDetailMap.get("country");
+    }
+
+    /**
+     * Converts a list of car detail mapped objects to a list of car detail objects
+     * @param carDetails the list of car detail mapped objects
+     * @return list of car detail objects
+     */
+    public static List<CarDetail> convertListCarDetailMapToObjects(List<Map<String, Object>> carDetails) {
+        var carDetailsList = new ArrayList<CarDetail>();
+        for (var carDetailMap: carDetails) {
+            carDetailsList.add(new CarDetail(carDetailMap));
+        }
+        return carDetailsList;
     }
 
     public Map<String, Object> getCarDetailMap() {
