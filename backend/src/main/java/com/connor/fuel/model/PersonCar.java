@@ -34,7 +34,7 @@ public class PersonCar {
      * @param personCars the list of person car mapped objects
      * @return list of person car objects
      */
-    public static List<PersonCar> convertListPersonCarToObjects(List<Map<String, Object>> personCars) {
+    public static List<PersonCar> convertMapToList(List<Map<String, Object>> personCars) {
         var personCarsList = new ArrayList<PersonCar>();
         for (var personCarMap: personCars) {
             personCarsList.add(new PersonCar(personCarMap));

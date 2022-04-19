@@ -87,19 +87,7 @@ public class DatabaseController {
             var stmt = conn.createStatement();
             var rs = stmt.executeQuery(query);
             while (rs.next()) {
-                var map = new HashMap<String, Object>();
-                map.put("licensePlate", rs.getString("licensePlate"));
-                map.put("engineSize", rs.getFloat("engineSize"));
-                map.put("horsepower", rs.getInt("horsepower"));
-                map.put("torque", rs.getInt("torque"));
-                map.put("fuelType", CarDetail.strToFuelType(rs.getString("fuelType")));
-                map.put("fuelEcoUrban", rs.getFloat("fuelEcoUrban"));
-                map.put("fuelEcoRural", rs.getFloat("fuelEcoRural"));
-                map.put("make", rs.getString("make"));
-                map.put("model", rs.getString("model"));
-                map.put("year", rs.getInt("year"));
-                map.put("country", rs.getString("country"));
-                carDetails.add(map);
+                carDetails.add(convertResultSetToCarDetailMap(rs));
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -120,15 +108,7 @@ public class DatabaseController {
             var stmt = conn.createStatement();
             var rs = stmt.executeQuery(query);
             while (rs.next()) {
-                var map = new HashMap<String, Object>();
-                map.put("country", rs.getString("country"));
-                map.put("petrol91", rs.getFloat("petrol91"));
-                map.put("petrol95", rs.getFloat("petrol95"));
-                map.put("petrol100", rs.getFloat("petrol100"));
-                map.put("diesel", rs.getFloat("diesel"));
-                map.put("ruc", rs.getFloat("ruc"));
-                map.put("electric", rs.getFloat("electric"));
-                fuelPrices.add(map);
+                fuelPrices.add(convertResultSetToFuelPriceMap(rs));
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -149,16 +129,7 @@ public class DatabaseController {
             var stmt = conn.createStatement();
             var rs = stmt.executeQuery(query);
             while (rs.next()) {
-                var map = new HashMap<String, Object>();
-                map.put("email", rs.getString("email"));
-                map.put("username", rs.getString("username"));
-                map.put("password", rs.getString("password"));
-                map.put("firstName", rs.getString("firstName"));
-                map.put("middleName", rs.getString("middleName"));
-                map.put("lastName", rs.getString("lastName"));
-                map.put("age", rs.getInt("age"));
-                map.put("birthday", rs.getString("birthday"));
-                people.add(map);
+                people.add(convertResultSetToPersonMap(rs));
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -179,17 +150,130 @@ public class DatabaseController {
             var stmt = conn.createStatement();
             var rs = stmt.executeQuery(query);
             while (rs.next()) {
-                var map = new HashMap<String, Object>();
-                map.put("email", rs.getString("email"));
-                map.put("licensePlate", rs.getString("licensePlate"));
-                map.put("urbanRuralRatio", rs.getFloat("urbanRuralRatio"));
-                map.put("fuelCost100km", rs.getFloat("fuelCost100km"));
-                personCars.add(map);
+                personCars.add(convertResultSetToPersonCarMap(rs));
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
         closeConnection(conn);
         return personCars;
+    }
+
+    /**
+     * Converts a results set containing a car detail object to a map of said object.
+     * @param rs the result set
+     * @return a map of a car detail object
+     */
+    public static Map<String, Object> convertResultSetToCarDetailMap(ResultSet rs) {
+        var map = new HashMap<String, Object>();
+        try {
+            map.put("licensePlate", rs.getString("licensePlate"));
+            map.put("engineSize", rs.getFloat("engineSize"));
+            map.put("horsepower", rs.getInt("horsepower"));
+            map.put("torque", rs.getInt("torque"));
+            map.put("fuelType", CarDetail.strToFuelType(rs.getString("fuelType")));
+            map.put("fuelEcoUrban", rs.getFloat("fuelEcoUrban"));
+            map.put("fuelEcoRural", rs.getFloat("fuelEcoRural"));
+            map.put("make", rs.getString("make"));
+            map.put("model", rs.getString("model"));
+            map.put("year", rs.getInt("year"));
+            map.put("country", rs.getString("country"));
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return map;
+    }
+
+    /**
+     * Converts a results set containing a fuel price object to a map of said object.
+     * @param rs the result set
+     * @return a map of a fuel price object
+     */
+    public static Map<String, Object> convertResultSetToFuelPriceMap(ResultSet rs) {
+        var map = new HashMap<String, Object>();
+        try {
+            map.put("country", rs.getString("country"));
+            map.put("petrol91", rs.getFloat("petrol91"));
+            map.put("petrol95", rs.getFloat("petrol95"));
+            map.put("petrol100", rs.getFloat("petrol100"));
+            map.put("diesel", rs.getFloat("diesel"));
+            map.put("ruc", rs.getFloat("ruc"));
+            map.put("electric", rs.getFloat("electric"));
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return map;
+    }
+
+    /**
+     * Converts a results set containing a person object to a map of said object.
+     * @param rs the result set
+     * @return a map of a person object
+     */
+    public static Map<String, Object> convertResultSetToPersonMap(ResultSet rs) {
+        var map = new HashMap<String, Object>();
+        try {
+            map.put("email", rs.getString("email"));
+            map.put("username", rs.getString("username"));
+            map.put("password", rs.getString("password"));
+            map.put("firstName", rs.getString("firstName"));
+            map.put("middleName", rs.getString("middleName"));
+            map.put("lastName", rs.getString("lastName"));
+            map.put("age", rs.getInt("age"));
+            map.put("birthday", rs.getString("birthday"));
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return map;
+    }
+
+    /**
+     * Converts a results set containing a person car object to a map of said object.
+     * @param rs the result set
+     * @return a map of a person car object
+     */
+    public static Map<String, Object> convertResultSetToPersonCarMap(ResultSet rs) {
+        var map = new HashMap<String, Object>();
+        try {
+            map.put("email", rs.getString("email"));
+            map.put("licensePlate", rs.getString("licensePlate"));
+            map.put("urbanRuralRatio", rs.getFloat("urbanRuralRatio"));
+            map.put("fuelCost100km", rs.getFloat("fuelCost100km"));
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return map;
+    }
+
+    /**
+     * Updates the fuel costs of all the vehicles based on the most recent data. Supposed to be run when the GraphQL API
+     * firsts starts
+     */
+    public static void updateFuelCosts() {
+        var conn = connect();
+        var allPersonCars = PersonCar.convertMapToList(DatabaseController.getAllPersonCarsFromDB());
+        try {
+            var stmt = conn.createStatement();
+            for (var personCar: allPersonCars) {
+                var getCarQuery = String.format("SELECT * FROM CarDetail WHERE CarDetail.licensePlate == \"%s\"",
+                        personCar.getLicensePlate()); //TODO Change! SQL injection is possible
+                var rs = stmt.executeQuery(getCarQuery);
+                if (!rs.next()) { throw new NullPointerException("No license plate"); }
+                var carDetail = new CarDetail(convertResultSetToCarDetailMap(rs));
+                var getFuelPriceQuery = String.format("SELECT * FROM FuelPrice WHERE FuelPrice.country == \"%s\"",
+                        carDetail.getCountry()); //TODO Change! SQL injection is possible
+                rs = stmt.executeQuery(getFuelPriceQuery);
+                if (!rs.next()) { throw new NullPointerException("No country"); }
+                var fuelPrice = new FuelPrice(convertResultSetToFuelPriceMap(rs));
+                var costPer100km = Logic.calcCostPer100km(carDetail, fuelPrice, personCar.getUrbanRuralRatio());
+                var newFuelPriceSQL = String.format("UPDATE PersonCar SET fuelCost100km = %.2f "
+                        + "WHERE email == \"%s\" AND licensePlate == \"%s\"",
+                        costPer100km, personCar.getEmail(), personCar.getLicensePlate());
+                stmt.execute(newFuelPriceSQL);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        closeConnection(conn);
     }
 }

@@ -4,6 +4,8 @@ import com.connor.fuel.model.CarDetail;
 import com.connor.fuel.model.FuelPrice;
 import com.connor.fuel.model.PersonCar;
 
+import java.util.Objects;
+
 public class Logic {
     public static float calcCostPer100km(CarDetail carDetails, FuelPrice fuelPrices, float urbanRuralRatio) {
         var costPer100km = 0.0f;
@@ -39,20 +41,4 @@ public class Logic {
         costPer100km += urbanCost + ruralCost;
         return costPer100km;
     }
-
-//    public static void updateFuelCosts() {
-//        for (PersonCar personCar: PersonCarData.allPersonCars) {
-//            String licensePlate = personCar.getLicensePlate();
-//            CarDetail currentCar = null;
-//            for (CarDetail carDetail: CarDetailData.allCarsDetails) {
-//                if (carDetail.getLicensePlate() == licensePlate) {
-//                    currentCar = carDetail;
-//                    break;
-//                }
-//            }
-//            FuelPrice fuelPrice = FuelPriceData.allFuelPrices.get(0); //Gets NZ since it is the only one so far
-//            float costPer100km = calcCostPer100km(currentCar, fuelPrice, personCar.getUrbanRuralRatio());
-//            personCar.setFuelCost100km(costPer100km);
-//        }
-//    }
 }

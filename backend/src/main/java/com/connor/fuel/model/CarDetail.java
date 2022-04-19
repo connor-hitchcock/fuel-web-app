@@ -109,7 +109,7 @@ public class CarDetail {
      * @param carDetails the list of car detail mapped objects
      * @return list of car detail objects
      */
-    public static List<CarDetail> convertListCarDetailMapToObjects(List<Map<String, Object>> carDetails) {
+    public static List<CarDetail> convertMapToList(List<Map<String, Object>> carDetails) {
         var carDetailsList = new ArrayList<CarDetail>();
         for (var carDetailMap: carDetails) {
             carDetailsList.add(new CarDetail(carDetailMap));

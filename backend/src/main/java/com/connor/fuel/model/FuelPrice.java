@@ -44,7 +44,7 @@ public class FuelPrice {
      * @param fuelPrices the list of car detail mapped objects
      * @return list of fuel price objects
      */
-    public static List<FuelPrice> convertListFuelPriceMapToObjects(List<Map<String, Object>> fuelPrices) {
+    public static List<FuelPrice> convertMapToList(List<Map<String, Object>> fuelPrices) {
         var fuelPriceList = new ArrayList<FuelPrice>();
         for (var fuelPriceMap: fuelPrices) {
             fuelPriceList.add(new FuelPrice(fuelPriceMap));

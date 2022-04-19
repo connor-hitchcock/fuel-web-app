@@ -47,7 +47,7 @@ public class Person {
      * @param people the list of people mapped objects
      * @return list of person objects
      */
-    public static List<Person> convertListPersonMapToObjects(List<Map<String, Object>> people) {
+    public static List<Person> convertMapToList(List<Map<String, Object>> people) {
         var peopleList = new ArrayList<Person>();
         for (var personMap: people) {
             peopleList.add(new Person(personMap));
