@@ -8,7 +8,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class GraphQLAPI {
 
     public static void main(String[] args) {
-        Logic.updateFuelCosts();
+        //Logic.updateFuelCosts();
         SpringApplication.run(GraphQLAPI.class, args);
     }
 }

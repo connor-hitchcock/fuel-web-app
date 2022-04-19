@@ -5,8 +5,6 @@ import com.auth0.jwt.interfaces.DecodedJWT;
 import com.connor.fuel.authentication.JWTHandler;
 import com.connor.fuel.authentication.PasswordHash;
 import com.connor.fuel.controller.DatabaseController;
-import com.connor.fuel.data.CarDetailData;
-import com.connor.fuel.data.FuelPriceData;
 import com.connor.fuel.model.CarDetail;
 import com.connor.fuel.model.FuelPrice;
 import com.connor.fuel.model.Person;
@@ -14,15 +12,7 @@ import com.connor.fuel.model.PersonCar;
 
 import java.util.HashMap;
 
-import static com.connor.fuel.controller.Logic.calcCostPer100km;
-
 public class Main {
-    public static void printAllCarDetails() {
-        for (CarDetail car: CarDetailData.allCarsDetails) {
-            var costPer100km = calcCostPer100km(car, FuelPriceData.newZealand, 0.5f);
-            System.out.printf("Fuel Cost: $%.2f " + car + "\n", costPer100km);
-        }
-    }
 
     public static void jwtTesting() {
         JWTHandler jwtHandler = new JWTHandler();

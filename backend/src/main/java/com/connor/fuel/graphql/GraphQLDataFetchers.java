@@ -1,9 +1,6 @@
 package com.connor.fuel.graphql;
 
-import com.connor.fuel.data.CarDetailData;
-import com.connor.fuel.data.FuelPriceData;
-import com.connor.fuel.data.PersonCarData;
-import com.connor.fuel.data.PersonData;
+import com.connor.fuel.controller.DatabaseController;
 import graphql.schema.DataFetcher;
 import org.springframework.stereotype.Component;
 
@@ -14,25 +11,25 @@ public class GraphQLDataFetchers {
     //Using hardcoded data at the moment
 
     public DataFetcher getCarDetailsDataFetcher() {
-        return env -> CarDetailData.allCarDetailsMapped;
+        return env -> DatabaseController.getAllCarDetailsFromDB();
     }
 
     public DataFetcher getFuelPricesDataFetcher() {
-        return env -> FuelPriceData.allFuelPricesMapped;
+        return env -> DatabaseController.getAllFuelPricesFromDB();
     }
 
     public DataFetcher getPersonDataFetcher() {
-        return env -> PersonData.allPeopleMapped;
+        return env -> DatabaseController.getAllPeopleFromDB();
     }
 
     public DataFetcher getPersonCarDataFetcher() {
-        return env -> PersonCarData.allPersonCarsMapped;
+        return env -> DatabaseController.getAllPersonCarsFromDB();
     }
 
     public DataFetcher getCarByPlateDataFetcher() {
         return env -> {
             String licensePlate = env.getArgument("licensePlate");
-            return CarDetailData.allCarDetailsMapped
+            return DatabaseController.getAllCarDetailsFromDB()
                     .stream()
                     .filter(carDetail -> carDetail.get("licensePlate").equals(licensePlate))
                     .findFirst()
@@ -44,7 +41,7 @@ public class GraphQLDataFetchers {
         return env -> {
             Map<String, Object> fuelPriceObj = env.getSource();
             String country = (String) fuelPriceObj.get("country");
-            return FuelPriceData.allFuelPricesMapped
+            return DatabaseController.getAllFuelPricesFromDB()
                     .stream()
                     .filter(fuelPrice -> fuelPrice.get("country").equals(country))
                     .findFirst()
@@ -56,7 +53,7 @@ public class GraphQLDataFetchers {
         return env -> {
             Map<String, Object> personObj = env.getSource();
             int personID = (int) personObj.get("personID");
-            return PersonData.allPeopleMapped
+            return DatabaseController.getAllPeopleFromDB()
                     .stream()
                     .filter(person -> person.get("personID").equals(personID))
                     .findFirst()
@@ -68,7 +65,7 @@ public class GraphQLDataFetchers {
         return env -> {
             Map<String, Object> personObj = env.getSource();
             String firstName = (String) personObj.get("firstName");
-            return PersonData.allPeopleMapped
+            return DatabaseController.getAllPeopleFromDB()
                     .stream()
                     .filter(person -> person.get("firstName").equals(firstName))
                     .findAny()
@@ -81,7 +78,7 @@ public class GraphQLDataFetchers {
             Map<String, Object> personObj = env.getSource();
             String firstName = (String) personObj.get("firstName");
             String lastName = (String) personObj.get("lastName");
-            return PersonData.allPeopleMapped
+            return DatabaseController.getAllPeopleFromDB()
                     .stream()
                     .filter(person -> person.get("firstName").equals(firstName))
                     .filter(person -> person.get("lastName").equals(lastName))
@@ -94,7 +91,7 @@ public class GraphQLDataFetchers {
         return env -> {
             Map<String, Object> personCarObj = env.getSource();
             int personID = (int) personCarObj.get("personID");
-            return PersonCarData.allPersonCarsMapped
+            return DatabaseController.getAllPersonCarsFromDB()
                     .stream()
                     .filter(personCar -> personCar.get("personID").equals(personID))
                     .findAny()
@@ -106,7 +103,7 @@ public class GraphQLDataFetchers {
         return env -> {
             Map<String, Object> personCarObj = env.getSource();
             String licensePlate = (String) personCarObj.get("licensePlate");
-            return PersonCarData.allPersonCarsMapped
+            return DatabaseController.getAllPersonCarsFromDB()
                     .stream()
                     .filter(personCar -> personCar.get("licensePlate").equals(licensePlate))
                     .findAny()
@@ -119,7 +116,7 @@ public class GraphQLDataFetchers {
             Map<String, Object> personCarObj = env.getSource();
             int personID = (int) personCarObj.get("personID");
             String licensePlate = (String) personCarObj.get("licensePlate");
-            return PersonCarData.allPersonCarsMapped
+            return DatabaseController.getAllPersonCarsFromDB()
                     .stream()
                     .filter(personCar -> personCar.get("personID").equals(personID))
                     .filter(personCar -> personCar.get("licensePlate").equals(licensePlate))

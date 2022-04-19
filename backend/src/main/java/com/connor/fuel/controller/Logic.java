@@ -2,9 +2,6 @@ package com.connor.fuel.controller;
 
 import com.connor.fuel.model.CarDetail;
 import com.connor.fuel.model.FuelPrice;
-import com.connor.fuel.data.PersonCarData;
-import com.connor.fuel.data.CarDetailData;
-import com.connor.fuel.data.FuelPriceData;
 import com.connor.fuel.model.PersonCar;
 
 public class Logic {
@@ -44,19 +41,19 @@ public class Logic {
     }
 
     //Temp for the API
-    public static void updateFuelCosts() {
-        for (PersonCar personCar: PersonCarData.allPersonCars) {
-            String licensePlate = personCar.getLicensePlate();
-            CarDetail currentCar = null;
-            for (CarDetail carDetail: CarDetailData.allCarsDetails) {
-                if (carDetail.getLicensePlate() == licensePlate) {
-                    currentCar = carDetail;
-                    break;
-                }
-            }
-            FuelPrice fuelPrice = FuelPriceData.allFuelPrices.get(0); //Gets NZ since it is the only one so far
-            float costPer100km = calcCostPer100km(currentCar, fuelPrice, personCar.getUrbanRuralRatio());
-            personCar.setFuelCost100km(costPer100km);
-        }
-    }
+//    public static void updateFuelCosts() {
+//        for (PersonCar personCar: PersonCarData.allPersonCars) {
+//            String licensePlate = personCar.getLicensePlate();
+//            CarDetail currentCar = null;
+//            for (CarDetail carDetail: CarDetailData.allCarsDetails) {
+//                if (carDetail.getLicensePlate() == licensePlate) {
+//                    currentCar = carDetail;
+//                    break;
+//                }
+//            }
+//            FuelPrice fuelPrice = FuelPriceData.allFuelPrices.get(0); //Gets NZ since it is the only one so far
+//            float costPer100km = calcCostPer100km(currentCar, fuelPrice, personCar.getUrbanRuralRatio());
+//            personCar.setFuelCost100km(costPer100km);
+//        }
+//    }
 }
