@@ -16,6 +16,17 @@ public class PersonCar {
         this.fuelCost100km = fuelCost100km;
     }
 
+    /**
+     * Creates a PersonCar object from a map of said object.
+     * @param personCarMap the map of a PersonCar object
+     */
+    public PersonCar(Map<String, Object> personCarMap) {
+        this.email = (String) personCarMap.get("email");
+        this.licensePlate = (String) personCarMap.get("licensePlate");
+        this.urbanRuralRatio = (float) personCarMap.get("urbanRuralRatio");
+        this.fuelCost100km = (float) personCarMap.get("fuelCost100km");
+    }
+
     public Map<String, Object> getPersonCarsMap() {
         Map<String, Object> map = new HashMap<>();
         map.put("email", email);
@@ -59,7 +70,7 @@ public class PersonCar {
 
     @Override
     public String toString() {
-        return String.format("%s, %s, Urban/Rural ratio: %.3f, Cost/100km: $%.2f",
+        return String.format("%s, %s, Urban/Rural ratio: %.2f, Cost/100km: $%.2f",
                 this.email, this.licensePlate, this.urbanRuralRatio, this.fuelCost100km);
     }
 }

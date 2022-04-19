@@ -26,6 +26,21 @@ public class Person {
         this.birthday = birthday;
     }
 
+    /**
+     * Creates a Person object from a map of said object.
+     * @param personMap the map of a Person object
+     */
+    public Person(Map<String, Object> personMap) {
+        this.email = (String) personMap.get("email");
+        this.username = (String) personMap.get("username");
+        this.password = (String) personMap.get("password");
+        this.firstName = (String) personMap.get("firstName");
+        this.middleName = (String) personMap.get("middleName");
+        this.lastName = (String) personMap.get("lastName");
+        this.age = (int) personMap.get("age");
+        this.birthday = (String) personMap.get("birthday");
+    }
+
     public Map<String, Object> getPersonMap() {
         Map<String, Object> map = new HashMap<>();
         map.put("email", email);

@@ -23,6 +23,20 @@ public class FuelPrice {
         this.electric = electric;
     }
 
+    /**
+     * Creates a FuelPrice object from a map of said object.
+     * @param fuelPriceMap the map of a FuelPrice object
+     */
+    public FuelPrice(Map<String, Object> fuelPriceMap) {
+        this.country = (String) fuelPriceMap.get("country");
+        this.petrol91 = (float) fuelPriceMap.get("petrol91");
+        this.petrol95 = (float) fuelPriceMap.get("petrol95");
+        this.petrol100 = (float) fuelPriceMap.get("petrol100");
+        this.diesel = (float) fuelPriceMap.get("diesel");
+        this.ruc = (float) fuelPriceMap.get("ruc");
+        this.electric = (float) fuelPriceMap.get("electric");
+    }
+
     public Map<String, Object> getFuelPriceMap() {
         Map<String, Object> map = new HashMap<>();
         map.put("country", country);

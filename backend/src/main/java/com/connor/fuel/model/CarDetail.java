@@ -14,6 +14,11 @@ public class CarDetail {
         ELECTRIC
     }
 
+    /**
+     * Converts the string equivalent of the FuelType enum to the FuelType enum.
+     * @param fuelTypeStr the string version of the FuelType enum.
+     * @return the FuelType enum
+     */
     public static FuelType strToFuelType(String fuelTypeStr) {
         FuelType fuelType = null;
         if (Objects.equals(fuelTypeStr, "PETROL91")) {
@@ -30,6 +35,29 @@ public class CarDetail {
             fuelType = FuelType.ELECTRIC;
         }
         return fuelType;
+    }
+
+    /**
+     * Converts the FuelType enum to the String equivalent.
+     * @param fuelType the FuelType enum
+     * @return the string version of the FuelType enum.
+     */
+    public static String fuelTypeToStr(FuelType fuelType) {
+        String fuelTypeStr = null;
+        if (fuelType.equals(FuelType.PETROL91)) {
+            fuelTypeStr = "PETROL91";
+        } else if (fuelType.equals(FuelType.PETROL95)) {
+            fuelTypeStr = "PETROL95";
+        } else if (fuelType.equals(FuelType.PETROL100)) {
+            fuelTypeStr = "PETROL100";
+        } else if (fuelType.equals(FuelType.DIESEL)) {
+            fuelTypeStr = "DIESEL";
+        } else if (fuelType.equals(FuelType.HYBRID)) {
+            fuelTypeStr = "HYBRID";
+        } else if (fuelType.equals(FuelType.ELECTRIC)) {
+            fuelTypeStr = "ELECTRIC";
+        }
+        return fuelTypeStr;
     }
 
     private String licensePlate;    //unique and non-null primary identifier, the car's license plate
@@ -57,6 +85,25 @@ public class CarDetail {
         this.model = model;
         this.year = year;
         this.country = country;
+    }
+
+    /**
+     * Creates a CarDetail object from a map of said object.
+     * @param carDetailMap the map of a CarDetail object
+     */
+    public CarDetail(Map<String, Object> carDetailMap) {
+        this.licensePlate = (String) carDetailMap.get("licensePlate");
+        this.engineSize = (float) carDetailMap.get("engineSize");
+        this.horsepower = (int) carDetailMap.get("horsepower");
+        this.torque = (int) carDetailMap.get("torque");
+        var fuelTypeStr = carDetailMap.get("fuelType").toString();
+        this.fuelType = strToFuelType(fuelTypeStr);
+        this.fuelEcoUrban = (float) carDetailMap.get("fuelEcoUrban");
+        this.fuelEcoRural = (float) carDetailMap.get("fuelEcoRural");
+        this.make = (String) carDetailMap.get("make");
+        this.model = (String) carDetailMap.get("model");
+        this.year = (int) carDetailMap.get("year");
+        this.country = (String) carDetailMap.get("country");
     }
 
     public Map<String, Object> getCarDetailMap() {
@@ -161,7 +208,7 @@ public class CarDetail {
 
     @Override
     public String toString() {
-        return String.format("%s %s %dHP %dnm %.1fL Engine, %.1fL/100km Urban, %.1fL/100km Rural",
-                this.make, this.model, this.horsepower, this.torque, this.engineSize, this.fuelEcoUrban, this.fuelEcoRural);
+        return String.format("%s %s %dHP %dnm %s %.1fL Engine, %.1fL/100km Urban, %.1fL/100km Rural",
+                this.make, this.model, this.horsepower, this.torque, fuelTypeToStr(this.fuelType), this.engineSize, this.fuelEcoUrban, this.fuelEcoRural);
     }
 }

@@ -47,31 +47,63 @@ public class Main {
         System.out.printf("Same password 2 (should be false): %s\n", samePasswordFalse);
     }
 
+//    public static void databaseTesting() {
+//        var carDetailResults = DatabaseController.getAllCarDetailsFromDB();
+//        System.out.println("All Car Details:");
+//        for (CarDetail carDetail: carDetailResults) {
+//            System.out.println(carDetail);
+//        }
+//        System.out.println("-----------------------------------------------------------------------------------------");
+//        var fuelPriceDetails = DatabaseController.getAllFuelPricesFromDB();
+//        System.out.println("All Fuel Price Details:");
+//        for (FuelPrice fuelPrice: fuelPriceDetails) {
+//            System.out.println(fuelPrice);
+//        }
+//        System.out.println("-----------------------------------------------------------------------------------------");
+//        var personDetails = DatabaseController.getAllPeopleFromDB();
+//        System.out.println("All Person Details:");
+//        for (Person person: personDetails) {
+//            System.out.println(person);
+//        }
+//        System.out.println("-----------------------------------------------------------------------------------------");
+//        var personCarDetails = DatabaseController.getAllPersonCarsFromDBList();
+//        System.out.println("All Person Car Details:");
+//        for (PersonCar personCar: personCarDetails) {
+//            System.out.println(personCar);
+//        }
+//        System.out.println("-----------------------------------------------------------------------------------------");
+//    }
+
     public static void databaseTesting() {
-        var carDetailResults = DatabaseController.getAllCarDetailsFromDB();
+        var carDetailDetails = DatabaseController.getAllCarDetailsFromDB();
         System.out.println("All Car Details:");
-        for (CarDetail carDetail: carDetailResults) {
+        for (var carDetailMap: carDetailDetails) {
+            var carDetail = new CarDetail(carDetailMap);
             System.out.println(carDetail);
         }
-        System.out.println("-----------------------------------------------------------------------------------------");
+        System.out.println("\n-----------------------------------------------------------------------------------------");
+
         var fuelPriceDetails = DatabaseController.getAllFuelPricesFromDB();
-        System.out.println("All Fuel Price Details:");
-        for (FuelPrice fuelPrice: fuelPriceDetails) {
+        for (var fuelPriceMap: fuelPriceDetails) {
+            var fuelPrice = new FuelPrice(fuelPriceMap);
             System.out.println(fuelPrice);
         }
-        System.out.println("-----------------------------------------------------------------------------------------");
+        System.out.println("\n-----------------------------------------------------------------------------------------");
+
         var personDetails = DatabaseController.getAllPeopleFromDB();
-        System.out.println("All Person Details:");
-        for (Person person: personDetails) {
+        for (var personMap: personDetails) {
+            var person = new Person(personMap);
             System.out.println(person);
         }
-        System.out.println("-----------------------------------------------------------------------------------------");
+        System.out.println("\n-----------------------------------------------------------------------------------------");
+
         var personCarDetails = DatabaseController.getAllPersonCarsFromDB();
         System.out.println("All Person Car Details:");
-        for (PersonCar personCar: personCarDetails) {
+        for (var personCarMap: personCarDetails) {
+            var personCar = new PersonCar(personCarMap);
             System.out.println(personCar);
         }
-        System.out.println("-----------------------------------------------------------------------------------------");
+        System.out.println("\n-----------------------------------------------------------------------------------------");
     }
 
     public static void main(String[] args) {
