@@ -1,25 +1,21 @@
 {
-  "name": "frontend-fuel-webapp",
+  "name": "frontend",
   "version": "0.1.0",
   "private": true,
-  "compileOptions": {
-    "esModuleInterop": true
-  },
   "dependencies": {
     "@apollo/client": "^3.5.10",
-    "@emotion/react": "^11.8.1",
-    "@emotion/styled": "^11.8.1",
-    "@mui/material": "^5.4.4",
-    "@testing-library/jest-dom": "^5.16.2",
-    "@testing-library/react": "^12.1.3",
+    "@testing-library/jest-dom": "^5.16.4",
+    "@testing-library/react": "^13.1.1",
     "@testing-library/user-event": "^13.5.0",
-    "bootstrap": "^5.1.3",
+    "@types/jest": "^27.4.1",
+    "@types/node": "^16.11.27",
+    "@types/react": "^18.0.5",
+    "@types/react-dom": "^18.0.1",
     "graphql": "^16.3.0",
-    "graphql-request": "^4.0.0",
-    "react": "^17.0.2",
-    "react-bootstrap": "^2.2.0",
-    "react-dom": "^17.0.2",
-    "react-scripts": "^5.0.0",
+    "react": "^18.0.0",
+    "react-dom": "^18.0.0",
+    "react-scripts": "5.0.1",
+    "typescript": "^4.6.3",
     "web-vitals": "^2.1.4"
   },
   "scripts": {
@@ -45,5 +41,13 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "engines": {
+    "node": "16.x",
+    "npm": ">=8.3.0"
+  },
+  "overrides": {
+    "react": "^18.0.0",
+    "react-dom": "^18.0.0"
   }
 }
