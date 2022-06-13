@@ -56,7 +56,7 @@ type Query {
     carDetails: [CarDetail]
     fuelPrices: [FuelPrice]
     personByEmail(email: ID): Person
-    personByFirstName(firstName: String): [Person]
+    peopleByFirstName(firstName: String): [Person]
     peopleByFirstLastName(firstName: String, lastName: String): [Person]
     personCarsByEmail(email: ID): [PersonCar]
     personCarsByPlate(licensePlate: ID): [PersonCar]

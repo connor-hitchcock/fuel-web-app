@@ -7,49 +7,55 @@ import graphql.schema.DataFetcher;
 import graphql.schema.DataFetchingEnvironment;
 import org.springframework.stereotype.Component;
 
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
 @Component
 public class GraphQLDataFetchers {
-    public boolean findFieldNameEnv(DataFetchingEnvironment env, String fieldName) {
-        return findFieldName(env.getMergedField().getSingleField().getSelectionSet(), fieldName);
+    public Map<String, Boolean> findFieldNamesEnv(DataFetchingEnvironment env, List<String> fieldNames) {
+        var foundFieldNames = new HashMap<String, Boolean>();
+        for (String fieldName: fieldNames) {
+            foundFieldNames.put(fieldName, false);
+        }
+        var selectionSet = env.getMergedField().getSingleField().getSelectionSet();
+        return findFieldNames(selectionSet, foundFieldNames);
     }
 
-    public boolean findFieldName(SelectionSet selectionSet, String fieldName) {
+    public Map<String, Boolean> findFieldNames(SelectionSet selectionSet, Map<String, Boolean> foundFieldNames) {
         for (var fieldObj: selectionSet.getSelections()) {
             var field = (Field) fieldObj;
+            if (foundFieldNames.get(field.getName()) != null) {
+                foundFieldNames.put(field.getName(), true);
+            }
             var subSelectionSet = field.getSelectionSet();
-            if (Objects.equals(field.getName(), fieldName)) {
-                return true;
-            } else if (subSelectionSet != null) {
-                return findFieldName(subSelectionSet, fieldName);
+            if (subSelectionSet != null) {
+                findFieldNames(subSelectionSet, foundFieldNames);
             }
         }
-        return false;
+        return foundFieldNames;
     }
 
     public DataFetcher getPersonDataFetcher() {
         return env -> {
-            boolean getOwnedCars = findFieldNameEnv(env, "ownedCars");
-            boolean getCar = findFieldNameEnv(env, "car");
-            boolean getFuelPrice = findFieldNameEnv(env, "fuelPrice");
-            return DatabaseController.getAllPeopleFromDB(getOwnedCars, getCar, getFuelPrice);
+            var gets = findFieldNamesEnv(env, List.of("ownedCars", "car", "fuelPrice"));
+            return DatabaseController.getAllPeopleFromDB(gets.get("ownedCars"), gets.get("car"), gets.get("fuelPrice"));
         };
     }
 
     public DataFetcher getPersonCarDataFetcher() {
         return env -> {
-            boolean getCar = findFieldNameEnv(env, "car");
-            boolean getFuelPrice = findFieldNameEnv(env, "fuelPrice");
-            return DatabaseController.getAllPersonCarsFromDB(null, getCar, getFuelPrice);
+            var gets = findFieldNamesEnv(env, List.of("car", "fuelPrice"));
+            return DatabaseController.getAllPersonCarsFromDB(null, gets.get("car"), gets.get("fuelPrice"));
         };
     }
 
     public DataFetcher getCarDetailsDataFetcher() {
         return env -> {
-            boolean getFuelPrice = findFieldNameEnv(env, "fuelPrice");
-            return DatabaseController.getAllCarDetailsFromDB(null, getFuelPrice);
+            var gets = findFieldNamesEnv(env, List.of("fuelPrice"));
+            return DatabaseController.getAllCarDetailsFromDB(null, gets.get("fuelPrice"));
         };
     }
 
@@ -60,7 +66,8 @@ public class GraphQLDataFetchers {
     public DataFetcher getCarByPlateDataFetcher() {
         return env -> {
             String licensePlate = env.getArgument("licensePlate");
-            return DatabaseController.getAllCarDetailsFromDB(null, false)
+            var gets = findFieldNamesEnv(env, List.of("fuelPrice"));
+            return DatabaseController.getAllCarDetailsFromDB(null, gets.get("fuelPrice"))
                     .stream()
                     .filter(carDetail -> carDetail.get("licensePlate").equals(licensePlate))
                     .findFirst()
@@ -82,7 +89,8 @@ public class GraphQLDataFetchers {
     public DataFetcher getPersonByEmailDataFetcher() {
         return env -> {
             String email = env.getArgument("email");
-            return DatabaseController.getAllPeopleFromDB(false, false, false)
+            var gets = findFieldNamesEnv(env, List.of("ownedCars", "car", "fuelPrice"));
+            return DatabaseController.getAllPeopleFromDB(gets.get("ownedCars"), gets.get("car"), gets.get("fuelPrice"))
                     .stream()
                     .filter(person -> person.get("email").equals(email))
                     .findFirst()
@@ -93,7 +101,8 @@ public class GraphQLDataFetchers {
     public DataFetcher getPeopleByFirstNameDataFetcher() {
         return env -> {
             String firstName = env.getArgument("firstName");
-            return DatabaseController.getAllPeopleFromDB(false, false, false)
+            var gets = findFieldNamesEnv(env, List.of("ownedCars", "car", "fuelPrice"));
+            return DatabaseController.getAllPeopleFromDB(gets.get("ownedCars"), gets.get("car"), gets.get("fuelPrice"))
                     .stream()
                     .filter(person -> person.get("firstName").equals(firstName))
                     .collect(Collectors.toList());
@@ -104,7 +113,8 @@ public class GraphQLDataFetchers {
         return env -> {
             String firstName = env.getArgument("firstName");
             String lastName = env.getArgument("lastName");
-            return DatabaseController.getAllPeopleFromDB(false, false, false)
+            var gets = findFieldNamesEnv(env, List.of("ownedCars", "car", "fuelPrice"));
+            return DatabaseController.getAllPeopleFromDB(gets.get("ownedCars"), gets.get("car"), gets.get("fuelPrice"))
                     .stream()
                     .filter(person -> person.get("firstName").equals(firstName))
                     .filter(person -> person.get("lastName").equals(lastName))
@@ -115,7 +125,8 @@ public class GraphQLDataFetchers {
     public DataFetcher getPersonCarsByEmailDataFetcher() {
         return env -> {
             String email = env.getArgument("email");
-            return DatabaseController.getAllPersonCarsFromDB(null, false, false)
+            var gets = findFieldNamesEnv(env, List.of("ownedCars", "car", "fuelPrice"));
+            return DatabaseController.getAllPeopleFromDB(gets.get("ownedCars"), gets.get("car"), gets.get("fuelPrice"))
                     .stream()
                     .filter(personCar -> personCar.get("email").equals(email))
                     .collect(Collectors.toList());
@@ -125,7 +136,8 @@ public class GraphQLDataFetchers {
     public DataFetcher getPersonCarsByLicensePlateDataFetcher() {
         return env -> {
             String licensePlate = env.getArgument("licensePlate");
-            return DatabaseController.getAllPersonCarsFromDB(null, false, false)
+            var gets = findFieldNamesEnv(env, List.of("car", "fuelPrice"));
+            return DatabaseController.getAllPersonCarsFromDB(null, gets.get("car"), gets.get("fuelPrice"))
                     .stream()
                     .filter(personCar -> personCar.get("licensePlate").equals(licensePlate))
                     .collect(Collectors.toList());
@@ -136,7 +148,8 @@ public class GraphQLDataFetchers {
         return env -> {
             String email = env.getArgument("email");
             String licensePlate = env.getArgument("licensePlate");
-            return DatabaseController.getAllPersonCarsFromDB(null, false, false)
+            var gets = findFieldNamesEnv(env, List.of("car", "fuelPrice"));
+            return DatabaseController.getAllPersonCarsFromDB(null, gets.get("car"), gets.get("fuelPrice"))
                     .stream()
                     .filter(personCar -> personCar.get("email").equals(email))
                     .filter(personCar -> personCar.get("licensePlate").equals(licensePlate))
