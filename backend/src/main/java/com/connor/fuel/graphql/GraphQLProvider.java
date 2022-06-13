@@ -67,13 +67,11 @@ public class GraphQLProvider {
                 .type(newTypeWiring("Query")
                         .dataFetcher("peopleByFirstLastName", dataFetchers.getPeopleByFirstLastNameDataFetcher()))
                 .type(newTypeWiring("Query")
-                        .dataFetcher("ownedCars", dataFetchers.getPersonCarsByEmailDataFetcher()))
-                .type(newTypeWiring("Query")
                         .dataFetcher("personCarsByEmail", dataFetchers.getPersonCarsByEmailDataFetcher()))
                 .type(newTypeWiring("Query")
                         .dataFetcher("personCarsByPlate", dataFetchers.getPersonCarsByLicensePlateDataFetcher()))
                 .type(newTypeWiring("Query")
-                        .dataFetcher("personCarsByEmailPlate", dataFetchers.getPersonCarByEmailLicensePlateDataFetcher()))
+                        .dataFetcher("personCarByEmailPlate", dataFetchers.getPersonCarByEmailLicensePlateDataFetcher()))
                 .build();
     }
 

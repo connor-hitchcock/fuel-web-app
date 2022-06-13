@@ -5,6 +5,7 @@ import graphql.schema.DataFetcher;
 import org.springframework.stereotype.Component;
 
 import java.util.Map;
+import java.util.stream.Collectors;
 
 @Component
 public class GraphQLDataFetchers {
@@ -65,8 +66,7 @@ public class GraphQLDataFetchers {
             return DatabaseController.getAllPeopleFromDB()
                     .stream()
                     .filter(person -> person.get("firstName").equals(firstName))
-                    .findAny()
-                    .orElse(null);
+                    .collect(Collectors.toList());
         };
     }
 
@@ -78,8 +78,7 @@ public class GraphQLDataFetchers {
                     .stream()
                     .filter(person -> person.get("firstName").equals(firstName))
                     .filter(person -> person.get("lastName").equals(lastName))
-                    .findAny()
-                    .orElse(null);
+                    .collect(Collectors.toList());
         };
     }
 
@@ -89,8 +88,7 @@ public class GraphQLDataFetchers {
             return DatabaseController.getAllPersonCarsFromDB()
                     .stream()
                     .filter(personCar -> personCar.get("email").equals(email))
-                    .findAny()
-                    .orElse(null);
+                    .collect(Collectors.toList());
         };
     }
 
@@ -100,8 +98,7 @@ public class GraphQLDataFetchers {
             return DatabaseController.getAllPersonCarsFromDB()
                     .stream()
                     .filter(personCar -> personCar.get("licensePlate").equals(licensePlate))
-                    .findAny()
-                    .orElse(null);
+                    .collect(Collectors.toList());
         };
     }
 

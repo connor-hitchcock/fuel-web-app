@@ -58,8 +58,8 @@ type Query {
     peopleByFirstName(firstName: String): [Person]
     peopleByFirstLastName(firstName: String, lastName: String): [Person]
     personCars: [PersonCar]
-    personCarByEmail(email: ID): [PersonCar]
-    personCarByPlate(licensePlate: ID): [PersonCar]
+    personCarsByEmail(email: ID): [PersonCar]
+    personCarsByPlate(licensePlate: ID): [PersonCar]
     personCarByEmailPlate(email: ID, licensePlate: ID): PersonCar
 }
 
