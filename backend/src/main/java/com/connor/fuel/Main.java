@@ -80,14 +80,14 @@ public class Main {
         }
         System.out.println("\n-----------------------------------------------------------------------------------------");
 
-        var personDetails = DatabaseController.getAllPeopleFromDB();
+        var personDetails = DatabaseController.getAllPeopleFromDB(true);
         for (var personMap: personDetails) {
             var person = new Person(personMap);
             System.out.println(person);
         }
         System.out.println("\n-----------------------------------------------------------------------------------------");
 
-        var personCarDetails = DatabaseController.getAllPersonCarsFromDB();
+        var personCarDetails = DatabaseController.getAllPersonCarsFromDB(null);
         System.out.println("All Person Car Details:");
         for (var personCarMap: personCarDetails) {
             var personCar = new PersonCar(personCarMap);

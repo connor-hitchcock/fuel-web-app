@@ -14,9 +14,10 @@ public class Person {
     private String lastName;
     private int age;
     private String birthday;
+    private List<PersonCar> ownedCars;
 
     public Person(String email, String username, String password, String firstName, String middleName,
-                  String lastName, int age, String birthday) {
+                  String lastName, int age, String birthday, List<PersonCar> ownedCars) {
         this.email = email;
         this.username = username;
         this.password = password;
@@ -25,6 +26,7 @@ public class Person {
         this.lastName = lastName;
         this.age = age;
         this.birthday = birthday;
+        this.ownedCars = ownedCars;
     }
 
     /**
@@ -40,6 +42,7 @@ public class Person {
         this.lastName = (String) personMap.get("lastName");
         this.age = (int) personMap.get("age");
         this.birthday = (String) personMap.get("birthday");
+        this.ownedCars = (List<PersonCar>) personMap.get("ownedCars");
     }
 
     /**
@@ -65,6 +68,7 @@ public class Person {
         map.put("lastName", lastName);
         map.put("age", age);
         map.put("birthday", birthday);
+        map.put("ownedCars", ownedCars);
         return map;
     }
 
@@ -131,6 +135,10 @@ public class Person {
     public void setBirthday(String birthday) {
         this.birthday = birthday;
     }
+
+    public List<PersonCar> getOwnedCars() { return ownedCars; }
+
+    public void setOwnedCars(List<PersonCar> ownedCars) { this.ownedCars = ownedCars; }
 
     @Override
     public String toString() {
