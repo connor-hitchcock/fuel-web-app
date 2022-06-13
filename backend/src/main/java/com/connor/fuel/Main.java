@@ -65,7 +65,7 @@ public class Main {
 //    }
 
     public static void databaseTesting() {
-        var carDetailDetails = DatabaseController.getAllCarDetailsFromDB();
+        var carDetailDetails = DatabaseController.getAllCarDetailsFromDB(null, false);
         System.out.println("All Car Details:");
         for (var carDetailMap: carDetailDetails) {
             var carDetail = new CarDetail(carDetailMap);
@@ -73,7 +73,7 @@ public class Main {
         }
         System.out.println("\n-----------------------------------------------------------------------------------------");
 
-        var fuelPriceDetails = DatabaseController.getAllFuelPricesFromDB();
+        var fuelPriceDetails = DatabaseController.getAllFuelPricesFromDB(null);
         for (var fuelPriceMap: fuelPriceDetails) {
             var fuelPrice = new FuelPrice(fuelPriceMap);
             System.out.println(fuelPrice);
@@ -87,7 +87,7 @@ public class Main {
         }
         System.out.println("\n-----------------------------------------------------------------------------------------");
 
-        var personCarDetails = DatabaseController.getAllPersonCarsFromDB(null);
+        var personCarDetails = DatabaseController.getAllPersonCarsFromDB(null, false);
         System.out.println("All Person Car Details:");
         for (var personCarMap: personCarDetails) {
             var personCar = new PersonCar(personCarMap);

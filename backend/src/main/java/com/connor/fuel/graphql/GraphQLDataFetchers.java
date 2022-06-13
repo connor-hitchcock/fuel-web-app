@@ -14,11 +14,11 @@ import java.util.stream.Collectors;
 public class GraphQLDataFetchers {
 
     public DataFetcher getCarDetailsDataFetcher() {
-        return env -> DatabaseController.getAllCarDetailsFromDB();
+        return env -> DatabaseController.getAllCarDetailsFromDB(null, false);
     }
 
     public DataFetcher getFuelPricesDataFetcher() {
-        return env -> DatabaseController.getAllFuelPricesFromDB();
+        return env -> DatabaseController.getAllFuelPricesFromDB(null);
     }
 
     public DataFetcher getPersonDataFetcher() {
@@ -37,13 +37,13 @@ public class GraphQLDataFetchers {
     }
 
     public DataFetcher getPersonCarDataFetcher() {
-        return env -> DatabaseController.getAllPersonCarsFromDB(null);
+        return env -> DatabaseController.getAllPersonCarsFromDB(null, false);
     }
 
     public DataFetcher getCarByPlateDataFetcher() {
         return env -> {
             String licensePlate = env.getArgument("licensePlate");
-            return DatabaseController.getAllCarDetailsFromDB()
+            return DatabaseController.getAllCarDetailsFromDB(null, false)
                     .stream()
                     .filter(carDetail -> carDetail.get("licensePlate").equals(licensePlate))
                     .findFirst()
@@ -54,7 +54,7 @@ public class GraphQLDataFetchers {
     public DataFetcher getFuelPriceDataFetcher() {
         return env -> {
             String country = env.getArgument("country");
-            return DatabaseController.getAllFuelPricesFromDB()
+            return DatabaseController.getAllFuelPricesFromDB(null)
                     .stream()
                     .filter(fuelPrice -> fuelPrice.get("country").equals(country))
                     .findFirst()
@@ -98,7 +98,7 @@ public class GraphQLDataFetchers {
     public DataFetcher getPersonCarsByEmailDataFetcher() {
         return env -> {
             String email = env.getArgument("email");
-            return DatabaseController.getAllPersonCarsFromDB(null)
+            return DatabaseController.getAllPersonCarsFromDB(null, false)
                     .stream()
                     .filter(personCar -> personCar.get("email").equals(email))
                     .collect(Collectors.toList());
@@ -108,7 +108,7 @@ public class GraphQLDataFetchers {
     public DataFetcher getPersonCarsByLicensePlateDataFetcher() {
         return env -> {
             String licensePlate = env.getArgument("licensePlate");
-            return DatabaseController.getAllPersonCarsFromDB(null)
+            return DatabaseController.getAllPersonCarsFromDB(null, false)
                     .stream()
                     .filter(personCar -> personCar.get("licensePlate").equals(licensePlate))
                     .collect(Collectors.toList());
@@ -119,7 +119,7 @@ public class GraphQLDataFetchers {
         return env -> {
             String email = env.getArgument("email");
             String licensePlate = env.getArgument("licensePlate");
-            return DatabaseController.getAllPersonCarsFromDB(null)
+            return DatabaseController.getAllPersonCarsFromDB(null, false)
                     .stream()
                     .filter(personCar -> personCar.get("email").equals(email))
                     .filter(personCar -> personCar.get("licensePlate").equals(licensePlate))

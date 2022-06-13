@@ -88,8 +88,10 @@ public class DatabaseController {
             var rs = stmt.executeQuery(query);
             while (rs.next()) {
                 var personMap = convertResultSetToPersonMap(rs);
-                var ownedCars = getAllPersonCarsFromDB((String) personMap.get("email"));
-                personMap.put("ownedCars", ownedCars);
+                if (getOwnedCars) {
+                    var ownedCars = getAllPersonCarsFromDB((String) personMap.get("email"), false);
+                    personMap.put("ownedCars", ownedCars);
+                }
                 people.add(personMap);
             }
         } catch (SQLException e) {
@@ -103,7 +105,7 @@ public class DatabaseController {
      * Sends a query to the SQLite db to retrieve all available entries inside the PersonCar table as mapped objects.
      * @return a list of PersonCar mapped objects.
      */
-    public static List<Map<String, Object>> getAllPersonCarsFromDB(String email) {
+    public static List<Map<String, Object>> getAllPersonCarsFromDB(String email, boolean getCar) {
         var conn = connect();
         var query = "Select * From PersonCar";
         if (email != null) {
@@ -114,7 +116,12 @@ public class DatabaseController {
             var stmt = conn.createStatement();
             var rs = stmt.executeQuery(query);
             while (rs.next()) {
-                personCars.add(convertResultSetToPersonCarMap(rs));
+                var personCarMap = convertResultSetToPersonCarMap(rs);
+                if (getCar) {
+                    var car = getAllCarDetailsFromDB((String) personCarMap.get("licensePlate"), false).get(0);
+                    personCarMap.put("car", car);
+                }
+                personCars.add(personCarMap);
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -127,15 +134,23 @@ public class DatabaseController {
      * Sends a query to the SQLite db to retrieve all available entries inside the CarDetail table as mapped objects.
      * @return a list of CarDetail mapped objects.
      */
-    public static List<Map<String, Object>> getAllCarDetailsFromDB() {
+    public static List<Map<String, Object>> getAllCarDetailsFromDB(String licensePlate, boolean getFuelPrice) {
         var conn = connect();
         var query = "Select * From CarDetail";
+        if (licensePlate != null) {
+            query += String.format(" Where licensePlate = '%s'", licensePlate); //TODO vulnerable to SQL injection
+        }
         var carDetails = new ArrayList<Map<String, Object>>();
         try {
             var stmt = conn.createStatement();
             var rs = stmt.executeQuery(query);
             while (rs.next()) {
-                carDetails.add(convertResultSetToCarDetailMap(rs));
+                var carDetailsMap = convertResultSetToCarDetailMap(rs);
+                if (getFuelPrice) {
+                    var fuelPrice = getAllFuelPricesFromDB((String) carDetailsMap.get("country")).get(0);
+                    carDetailsMap.put("fuelPrice", fuelPrice);
+                }
+                carDetails.add(carDetailsMap);
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -145,24 +160,27 @@ public class DatabaseController {
     }
 
     /**
-     * Converts a results set containing a fuel price object to a map of said object.
-     * @param rs the result set
-     * @return a map of a fuel price object
+     * Sends a query to the SQLite db to retrieve all available entries inside the FuelPrice table as mapped objects.
+     * @return a list of FuelPrice mapped objects.
      */
-    public static Map<String, Object> convertResultSetToFuelPriceMap(ResultSet rs) {
-        var map = new HashMap<String, Object>();
+    public static List<Map<String, Object>> getAllFuelPricesFromDB(String country) {
+        var conn = connect();
+        var query = "Select * From FuelPrice";
+        if (country != null) {
+            query += String.format(" Where country = '%s'", country); //TODO vulnerable to SQL injection
+        }
+        var fuelPrices = new ArrayList<Map<String, Object>>();
         try {
-            map.put("country", rs.getString("country"));
-            map.put("petrol91", rs.getFloat("petrol91"));
-            map.put("petrol95", rs.getFloat("petrol95"));
-            map.put("petrol100", rs.getFloat("petrol100"));
-            map.put("diesel", rs.getFloat("diesel"));
-            map.put("ruc", rs.getFloat("ruc"));
-            map.put("electric", rs.getFloat("electric"));
+            var stmt = conn.createStatement();
+            var rs = stmt.executeQuery(query);
+            while (rs.next()) {
+                fuelPrices.add(convertResultSetToFuelPriceMap(rs));
+            }
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return map;
+        closeConnection(conn);
+        return fuelPrices;
     }
 
     /**
@@ -231,24 +249,24 @@ public class DatabaseController {
     }
 
     /**
-     * Sends a query to the SQLite db to retrieve all available entries inside the FuelPrice table as mapped objects.
-     * @return a list of FuelPrice mapped objects.
+     * Converts a results set containing a fuel price object to a map of said object.
+     * @param rs the result set
+     * @return a map of a fuel price object
      */
-    public static List<Map<String, Object>> getAllFuelPricesFromDB() {
-        var conn = connect();
-        var query = "Select * From FuelPrice";
-        var fuelPrices = new ArrayList<Map<String, Object>>();
+    public static Map<String, Object> convertResultSetToFuelPriceMap(ResultSet rs) {
+        var map = new HashMap<String, Object>();
         try {
-            var stmt = conn.createStatement();
-            var rs = stmt.executeQuery(query);
-            while (rs.next()) {
-                fuelPrices.add(convertResultSetToFuelPriceMap(rs));
-            }
+            map.put("country", rs.getString("country"));
+            map.put("petrol91", rs.getFloat("petrol91"));
+            map.put("petrol95", rs.getFloat("petrol95"));
+            map.put("petrol100", rs.getFloat("petrol100"));
+            map.put("diesel", rs.getFloat("diesel"));
+            map.put("ruc", rs.getFloat("ruc"));
+            map.put("electric", rs.getFloat("electric"));
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        closeConnection(conn);
-        return fuelPrices;
+        return map;
     }
 
     /**
@@ -257,7 +275,7 @@ public class DatabaseController {
      */
     public static void updateFuelCosts() {
         var conn = connect();
-        var allPersonCars = PersonCar.convertMapToList(DatabaseController.getAllPersonCarsFromDB(null));
+        var allPersonCars = PersonCar.convertMapToList(DatabaseController.getAllPersonCarsFromDB(null, false));
         try {
             var stmt = conn.createStatement();
             for (var personCar: allPersonCars) {

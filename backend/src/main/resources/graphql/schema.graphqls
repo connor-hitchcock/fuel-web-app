@@ -1,38 +1,3 @@
-enum FuelType {
-    PETROL91
-    PETROL95
-    PETROL100
-    DIESEL
-    HYBRID
-    ELECTRIC
-}
-
-type CarDetail {
-    licensePlate: ID
-    engineSize: Float
-    horsepower: Int
-    torque: Int
-    fuelType: FuelType
-    fuelEcoUrban: Float
-    fuelEcoRural: Float
-    make: String
-    model: String
-    year: Int
-    country: String
-    fuelPrice: FuelPrice
-    ownedCars: [PersonCar]
-}
-
-type FuelPrice {
-    country: ID
-    petrol91: Float
-    petrol95: Float
-    petrol100: Float
-    diesel: Float
-    ruc: Float
-    electric: Float
-}
-
 type Person {
     email: ID
     firstName: String
@@ -49,6 +14,40 @@ type PersonCar {
     urbanRuralRatio: Float
     fuelCost100km: Float
     car: CarDetail
+}
+
+type CarDetail {
+    licensePlate: ID
+    engineSize: Float
+    horsepower: Int
+    torque: Int
+    fuelType: FuelType
+    fuelEcoUrban: Float
+    fuelEcoRural: Float
+    make: String
+    model: String
+    year: Int
+    country: String
+    fuelPrice: FuelPrice
+}
+
+enum FuelType {
+    PETROL91
+    PETROL95
+    PETROL100
+    DIESEL
+    HYBRID
+    ELECTRIC
+}
+
+type FuelPrice {
+    country: ID
+    petrol91: Float
+    petrol95: Float
+    petrol100: Float
+    diesel: Float
+    ruc: Float
+    electric: Float
 }
 
 type Query {
