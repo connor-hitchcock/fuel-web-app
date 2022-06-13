@@ -79,7 +79,7 @@ public class DatabaseController {
      * Sends a query to the SQLite db to retrieve all available entries inside the Person table as mapped objects.
      * @return a list of Person mapped objects.
      */
-    public static List<Map<String, Object>> getAllPeopleFromDB(boolean getOwnedCars) {
+    public static List<Map<String, Object>> getAllPeopleFromDB(boolean getOwnedCars, boolean getCar, boolean getFuelPrice) {
         var conn = connect();
         var query = "Select * From Person";
         var people = new ArrayList<Map<String, Object>>();
@@ -89,7 +89,7 @@ public class DatabaseController {
             while (rs.next()) {
                 var personMap = convertResultSetToPersonMap(rs);
                 if (getOwnedCars) {
-                    var ownedCars = getAllPersonCarsFromDB((String) personMap.get("email"), false);
+                    var ownedCars = getAllPersonCarsFromDB((String) personMap.get("email"), getCar, getFuelPrice);
                     personMap.put("ownedCars", ownedCars);
                 }
                 people.add(personMap);
@@ -105,7 +105,7 @@ public class DatabaseController {
      * Sends a query to the SQLite db to retrieve all available entries inside the PersonCar table as mapped objects.
      * @return a list of PersonCar mapped objects.
      */
-    public static List<Map<String, Object>> getAllPersonCarsFromDB(String email, boolean getCar) {
+    public static List<Map<String, Object>> getAllPersonCarsFromDB(String email, boolean getCar, boolean getFuelPrice) {
         var conn = connect();
         var query = "Select * From PersonCar";
         if (email != null) {
@@ -118,7 +118,7 @@ public class DatabaseController {
             while (rs.next()) {
                 var personCarMap = convertResultSetToPersonCarMap(rs);
                 if (getCar) {
-                    var car = getAllCarDetailsFromDB((String) personCarMap.get("licensePlate"), false).get(0);
+                    var car = getAllCarDetailsFromDB((String) personCarMap.get("licensePlate"), getFuelPrice).get(0);
                     personCarMap.put("car", car);
                 }
                 personCars.add(personCarMap);
@@ -275,7 +275,7 @@ public class DatabaseController {
      */
     public static void updateFuelCosts() {
         var conn = connect();
-        var allPersonCars = PersonCar.convertMapToList(DatabaseController.getAllPersonCarsFromDB(null, false));
+        var allPersonCars = PersonCar.convertMapToList(DatabaseController.getAllPersonCarsFromDB(null, false, false));
         try {
             var stmt = conn.createStatement();
             for (var personCar: allPersonCars) {

@@ -65,7 +65,22 @@ public class Main {
 //    }
 
     public static void databaseTesting() {
-        var carDetailDetails = DatabaseController.getAllCarDetailsFromDB(null, false);
+        var personDetails = DatabaseController.getAllPeopleFromDB(true, true, true);
+        for (var personMap: personDetails) {
+            var person = new Person(personMap);
+            System.out.println(person);
+        }
+        System.out.println("\n-----------------------------------------------------------------------------------------");
+
+        var personCarDetails = DatabaseController.getAllPersonCarsFromDB(null, true, true);
+        System.out.println("All Person Car Details:");
+        for (var personCarMap: personCarDetails) {
+            var personCar = new PersonCar(personCarMap);
+            System.out.println(personCar);
+        }
+        System.out.println("\n-----------------------------------------------------------------------------------------");
+
+        var carDetailDetails = DatabaseController.getAllCarDetailsFromDB(null, true);
         System.out.println("All Car Details:");
         for (var carDetailMap: carDetailDetails) {
             var carDetail = new CarDetail(carDetailMap);
@@ -80,20 +95,6 @@ public class Main {
         }
         System.out.println("\n-----------------------------------------------------------------------------------------");
 
-        var personDetails = DatabaseController.getAllPeopleFromDB(true);
-        for (var personMap: personDetails) {
-            var person = new Person(personMap);
-            System.out.println(person);
-        }
-        System.out.println("\n-----------------------------------------------------------------------------------------");
-
-        var personCarDetails = DatabaseController.getAllPersonCarsFromDB(null, false);
-        System.out.println("All Person Car Details:");
-        for (var personCarMap: personCarDetails) {
-            var personCar = new PersonCar(personCarMap);
-            System.out.println(personCar);
-        }
-        System.out.println("\n-----------------------------------------------------------------------------------------");
     }
 
     public static void main(String[] args) {
