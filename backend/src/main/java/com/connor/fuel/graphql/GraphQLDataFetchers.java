@@ -39,8 +39,7 @@ public class GraphQLDataFetchers {
 
     public DataFetcher getFuelPriceDataFetcher() {
         return env -> {
-            Map<String, Object> fuelPriceObj = env.getSource();
-            String country = (String) fuelPriceObj.get("country");
+            String country = env.getArgument("country");
             return DatabaseController.getAllFuelPricesFromDB()
                     .stream()
                     .filter(fuelPrice -> fuelPrice.get("country").equals(country))
@@ -51,8 +50,7 @@ public class GraphQLDataFetchers {
 
     public DataFetcher getPersonByEmailDataFetcher() {
         return env -> {
-            Map<String, Object> personObj = env.getSource();
-            String email = (String) personObj.get("email");
+            String email = env.getArgument("email");
             return DatabaseController.getAllPeopleFromDB()
                     .stream()
                     .filter(person -> person.get("email").equals(email))
@@ -63,8 +61,7 @@ public class GraphQLDataFetchers {
 
     public DataFetcher getPeopleByFirstNameDataFetcher() {
         return env -> {
-            Map<String, Object> personObj = env.getSource();
-            String firstName = (String) personObj.get("firstName");
+            String firstName = env.getArgument("firstName");
             return DatabaseController.getAllPeopleFromDB()
                     .stream()
                     .filter(person -> person.get("firstName").equals(firstName))
@@ -75,9 +72,8 @@ public class GraphQLDataFetchers {
 
     public DataFetcher getPeopleByFirstLastNameDataFetcher() {
         return env -> {
-            Map<String, Object> personObj = env.getSource();
-            String firstName = (String) personObj.get("firstName");
-            String lastName = (String) personObj.get("lastName");
+            String firstName = env.getArgument("firstName");
+            String lastName = env.getArgument("lastName");
             return DatabaseController.getAllPeopleFromDB()
                     .stream()
                     .filter(person -> person.get("firstName").equals(firstName))
@@ -89,8 +85,7 @@ public class GraphQLDataFetchers {
 
     public DataFetcher getPersonCarsByEmailDataFetcher() {
         return env -> {
-            Map<String, Object> personCarObj = env.getSource();
-            String email = (String) personCarObj.get("email");
+            String email = env.getArgument("email");
             return DatabaseController.getAllPersonCarsFromDB()
                     .stream()
                     .filter(personCar -> personCar.get("email").equals(email))
@@ -101,8 +96,7 @@ public class GraphQLDataFetchers {
 
     public DataFetcher getPersonCarsByLicensePlateDataFetcher() {
         return env -> {
-            Map<String, Object> personCarObj = env.getSource();
-            String licensePlate = (String) personCarObj.get("licensePlate");
+            String licensePlate = env.getArgument("licensePlate");
             return DatabaseController.getAllPersonCarsFromDB()
                     .stream()
                     .filter(personCar -> personCar.get("licensePlate").equals(licensePlate))
@@ -113,12 +107,11 @@ public class GraphQLDataFetchers {
 
     public DataFetcher getPersonCarByEmailLicensePlateDataFetcher() {
         return env -> {
-            Map<String, Object> personCarObj = env.getSource();
-            String personID = (String) personCarObj.get("email");
-            String licensePlate = (String) personCarObj.get("licensePlate");
+            String email = env.getArgument("email");
+            String licensePlate = env.getArgument("licensePlate");
             return DatabaseController.getAllPersonCarsFromDB()
                     .stream()
-                    .filter(personCar -> personCar.get("email").equals(personID))
+                    .filter(personCar -> personCar.get("email").equals(email))
                     .filter(personCar -> personCar.get("licensePlate").equals(licensePlate))
                     .findFirst()
                     .orElse(null);

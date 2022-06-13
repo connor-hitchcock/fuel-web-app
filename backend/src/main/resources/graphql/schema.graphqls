@@ -54,14 +54,13 @@ type Query {
     carByPlate(licensePlate: ID): CarDetail
     fuelPrices: [FuelPrice]
     people: [Person]
-    personByID(email: ID): Person
+    personByEmail(email: ID): Person
     peopleByFirstName(firstName: String): [Person]
     peopleByFirstLastName(firstName: String, lastName: String): [Person]
-    ownedCars: [PersonCar]
     personCars: [PersonCar]
-    personCarByID(email: ID): [PersonCar]
+    personCarByEmail(email: ID): [PersonCar]
     personCarByPlate(licensePlate: ID): [PersonCar]
-    personCarByIDPlate(email: ID, licensePlate: ID): PersonCar
+    personCarByEmailPlate(email: ID, licensePlate: ID): PersonCar
 }
 
 #type Mutation {

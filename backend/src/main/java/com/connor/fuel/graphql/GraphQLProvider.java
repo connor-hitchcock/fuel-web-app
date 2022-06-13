@@ -73,7 +73,7 @@ public class GraphQLProvider {
                 .type(newTypeWiring("Query")
                         .dataFetcher("personCarsByPlate", dataFetchers.getPersonCarsByLicensePlateDataFetcher()))
                 .type(newTypeWiring("Query")
-                        .dataFetcher("personCarsByIDPlate", dataFetchers.getPersonCarByEmailLicensePlateDataFetcher()))
+                        .dataFetcher("personCarsByEmailPlate", dataFetchers.getPersonCarByEmailLicensePlateDataFetcher()))
                 .build();
     }
 
